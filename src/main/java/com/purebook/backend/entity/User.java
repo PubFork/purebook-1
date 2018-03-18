@@ -5,39 +5,45 @@ import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class User {
 
-	@JsonProperty(value="UserName")
-	public String userName;
-	@JsonProperty(value="UserID")
-	public int userID;
-	@JsonProperty(value="UserKey")
-	public String userKey;
-	@JsonProperty(value="Phone")
-	public String phone;
-	@JsonProperty(value="Portrait")
-	public String portrait;
-	@JsonProperty(value="Created")
-	public Timestamp created;
-	@JsonProperty(value="Desc")
-	public String desc;
-	public String getUserName() {
-		return userName;
+    @Id
+    @GeneratedValue
+	private int id;
+	//@JsonProperty(value="UserName")
+	private String name;
+	//@JsonProperty(value="UserID")
+
+	//@JsonProperty(value="UserKey")
+	private String password;
+	//@JsonProperty(value="Phone")
+	private String phone;
+	//@JsonProperty(value="Portrait")
+	private String portrait;
+	//@JsonProperty(value="Created")
+	private Timestamp created;
+	//@JsonProperty(value="Desc")
+	private String desc;
+	public String getName() {
+		return name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public int getUserID() {
-		return userID;
+	public int getId() {
+		return id;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getUserKey() {
-		return userKey;
+	public String getPassword() {
+		return password;
 	}
-	public void setUserKey(String userKey) {
-		this.userKey = userKey;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getPhone() {
 		return phone;

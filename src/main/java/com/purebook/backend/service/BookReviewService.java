@@ -31,5 +31,6 @@ public class BookReviewService {
 		bookReview.setReview(review);
 		bookReview.setTime(new java.sql.Timestamp(new java.util.Date().getTime()));
 		return bookReviewDao.add(bookReview);
+		return 1;
 	}
 }

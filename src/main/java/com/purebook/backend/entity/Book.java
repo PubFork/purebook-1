@@ -2,42 +2,52 @@ package com.purebook.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Book {
-	@JsonProperty(value="BookName")
-	public String bookName;
-	@JsonProperty(value="BookID")
-	public int bookID;
-	@JsonProperty(value="Author")
-	public String author;
-	@JsonProperty(value="AuthorIntro")
-	public String authorIntro;
-	@JsonProperty(value="Price")
-	public String price;
-	@JsonProperty(value="Intro")
-	public String intro;
-	@JsonProperty(value="Cover")
-	public String cover;
-	@JsonProperty(value="Publisher")
-	public String publisher;
-	@JsonProperty(value="ISBN")
-	public String iSBN;
-	public String getiSBN() {
-		return iSBN;
+
+	//@JsonProperty(value="BookName")
+    @Id
+    @GeneratedValue
+    private int id;
+
+	private String name;
+	//@JsonProperty(value="id")
+
+	//@JsonProperty(value="Author")
+	private String author;
+	//@JsonProperty(value="AuthorIntro")
+	private String authorIntro;
+	//@JsonProperty(value="Price")
+	private String price;
+	//@JsonProperty(value="Intro")
+	private String intro;
+	//@JsonProperty(value="Cover")
+	private String cover;
+	//@JsonProperty(value="Publisher")
+	private String publisher;
+	//@JsonProperty(value="ISBN")
+	private String ISBN;
+	public String getISBN() {
+		return ISBN;
 	}
-	public void setiSBN(String iSBN) {
-		this.iSBN = iSBN;
+	public void setISBN(String ISBN) {
+		this.ISBN = ISBN;
 	}
-	public String getBookName() {
-		return bookName;
+	public String getName() {
+		return name;
 	}
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public int getBookID() {
-		return bookID;
+	public int getId() {
+		return id;
 	}
-	public void setBookID(int bookID) {
-		this.bookID = bookID;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getAuthor() {
 		return author;

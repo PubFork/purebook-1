@@ -34,7 +34,7 @@ public class UserDao {
 		}
 		return null;
 	}
-	
+
 
 	public User findUserbyID(int id){
 		List<User> userList=jdbcTemplate.query("select * from User where UserID = ?", new Object[]{id}, new BeanPropertyRowMapper(User.class));
