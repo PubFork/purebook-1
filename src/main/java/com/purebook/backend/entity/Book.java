@@ -2,9 +2,11 @@ package com.purebook.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Book {
@@ -16,8 +18,8 @@ public class Book {
 
 	private String name;
 	//@JsonProperty(value="id")
-
 	//@JsonProperty(value="Author")
+    @Column(nullable = false)
 	private String author;
 	//@JsonProperty(value="AuthorIntro")
 	private String authorIntro;
@@ -31,6 +33,10 @@ public class Book {
 	private String publisher;
 	//@JsonProperty(value="ISBN")
 	private String ISBN;
+
+	public Book() {}
+	public Book(String name) {this.name = name; }
+
 	public String getISBN() {
 		return ISBN;
 	}

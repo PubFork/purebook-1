@@ -23,7 +23,7 @@ public class LoginController {
 	public JsonResultwithData login(@RequestParam int id,@RequestParam String password){
 		User user=userService.findUserbyID(id);
 		if(user!=null){
-			if(user.getUserKey().equals(password)){
+			if(user.getPassword().equals(password)){
 				JsonResultwithData jsonResultwithData=new JsonResultwithData();
 				jsonResultwithData.setData(user);
 				return jsonResultwithData;

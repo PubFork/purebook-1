@@ -31,8 +31,8 @@ public class BookReviewDao {
 		return null;
 	}
 
-	public int add(BookReview bReview) {
-        return jdbcTemplate.update("insert into BookReview(UserID, BookID, Review, Time) "
-        		+ "values(?, ?, ?, ?)",bReview.userID,bReview.bookID,bReview.review,bReview.time);
-    }
+//	public int add(BookReview bReview) {
+//        return jdbcTemplate.update("insert into BookReview(UserID, BookID, Review, Time) "
+//        		+ "values(?, ?, ?, ?)",bReview.userID,bReview.bookID,bReview.review,bReview.time);
+//    }
 }

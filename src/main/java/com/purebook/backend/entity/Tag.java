@@ -2,10 +2,10 @@ package com.purebook.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+@Entity
 public class Tag {
 
     @Id
@@ -14,10 +14,12 @@ public class Tag {
 	//@JsonProperty(value="BookID")
 	//private int bookID;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "book_id")
     private Book book;
 
 	//@JsonProperty(value="Field")
+    @Column(nullable = false)
 	private String field;
 	//@JsonProperty(value="Count")
 	private int count;

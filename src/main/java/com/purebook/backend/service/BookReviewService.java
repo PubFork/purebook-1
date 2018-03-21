@@ -3,7 +3,12 @@ package com.purebook.backend.service;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.purebook.backend.dao.BookReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.mysql.fabric.xmlrpc.base.Data;
@@ -26,11 +31,11 @@ public class BookReviewService {
 	
 	public int writeReview(Integer uid, Integer bid, String review){
 		BookReview bookReview = new BookReview();
-		bookReview.setBookID(bid);
-		bookReview.setUserID(uid);
+//		bookReview.setBookID(bid);
+//		bookReview.setUserID(uid);
 		bookReview.setReview(review);
 		bookReview.setTime(new java.sql.Timestamp(new java.util.Date().getTime()));
-		return bookReviewDao.add(bookReview);
+//		return bookReviewDao.add(bookReview);
 		return 1;
 	}
 }

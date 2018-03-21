@@ -5,19 +5,25 @@ import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
+@Entity
 public class User {
 
     @Id
     @GeneratedValue
 	private int id;
 	//@JsonProperty(value="UserName")
+    @Column(nullable = false)
 	private String name;
 	//@JsonProperty(value="UserID")
 
 	//@JsonProperty(value="UserKey")
+    @Column(nullable = false)
 	private String password;
 	//@JsonProperty(value="Phone")
 	private String phone;
@@ -27,6 +33,10 @@ public class User {
 	private Timestamp created;
 	//@JsonProperty(value="Desc")
 	private String desc;
+
+	public User() {}
+	public User(String name) { this.name = name; }
+
 	public String getName() {
 		return name;
 	}

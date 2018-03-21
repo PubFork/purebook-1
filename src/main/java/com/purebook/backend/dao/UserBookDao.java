@@ -24,7 +24,7 @@ public class UserBookDao {
 	}
 	
 	public int isCollected(Integer uid, Integer bid){
-		Integer count =  jdbcTemplate.queryForObject("select count(*) from UserBook where UserID = ? and BookID = ?", 
+		Integer count =  jdbcTemplate.queryForObject("select count(*) from UserBook where UserID = ? and BookID = ?", ///返回被选行数
 				 Integer.class,uid, bid);
 		return count;
 	}

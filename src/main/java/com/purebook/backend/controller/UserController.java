@@ -39,13 +39,13 @@ public class UserController {
 	public JsonResult add(@RequestParam String name,@RequestParam String key){
 
 			User user=new User();
-			user.setUserName(name);
-			user.setUserKey(key);
+			user.setName(name);
+			user.setPassword(key);
 			user.setCreated(new java.sql.Timestamp(new java.util.Date().getTime()));
-			userService.add(user);
+//			userService.add(user);
 
 			JsonResultwithData jsonResultwithData=new JsonResultwithData(ResultCode.SUCCESS);
-			jsonResultwithData.setData(userService.add(user));
+//			jsonResultwithData.setData(userService.add(user));
 			return jsonResultwithData;
 
 	}
@@ -55,7 +55,7 @@ public class UserController {
 	public JsonResult findbyID(@PathVariable Integer id){
 		User user=userService.findUserbyID(id);
 		if(user!=null){
-			user.setUserKey(null);
+			user.setPassword(null);
 			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 			jsonResultwithData.setData(user);
 			return jsonResultwithData;
