@@ -41,7 +41,7 @@ public class UserController {
 			User user=new User();
 			user.setName(name);
 			user.setPassword(key);
-			user.setCreated(new java.sql.Timestamp(new java.util.Date().getTime()));
+			user.setCreateTime(new java.sql.Timestamp(new java.util.Date().getTime()));
 //			userService.add(user);
 
 			JsonResultwithData jsonResultwithData=new JsonResultwithData(ResultCode.SUCCESS);

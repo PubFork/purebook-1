@@ -10,49 +10,42 @@ public class Tag {
 
     @Id
     @GeneratedValue
-	private int tagId;
-	//@JsonProperty(value="BookID")
-	//private int bookID;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "book_id")
-    private Book book;
-
-	//@JsonProperty(value="Field")
+    private int id;
+    @Column(name = "book_id")
+    private int bookId;
     @Column(nullable = false)
-	private String field;
-	//@JsonProperty(value="Count")
-	private int count;
-//	public int getBookID() {
-//		return bookID;
-//	}
-//	public void setBookID(int bookID) {
-//		this.bookID = bookID;
-//	}
+    private String field;
+    private int count;
 
-    public int getTagId() {
-        return tagId;
+    public int getId() {
+        return id;
     }
-    public void setTagId(int tagId) {
-        this.tagId = tagId;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    public Book getBook() {
-        return book;
+
+    public int getBookId() {
+        return bookId;
     }
-    public void setBook(Book book) {
-        this.book = book;
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     public String getField() {
-		return field;
-	}
-	public void setField(String field) {
-		this.field = field;
-	}
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
-	}
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 }

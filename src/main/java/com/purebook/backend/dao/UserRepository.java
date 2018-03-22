@@ -8,8 +8,5 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-
-    //User save(User user); 直接调用save
-
     User findById(int id);
 }
