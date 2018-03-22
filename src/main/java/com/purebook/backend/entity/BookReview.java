@@ -22,6 +22,15 @@ public class BookReview {
     @Column(nullable = false)
     private Timestamp time;
 
+    public BookReview() {}
+
+    public BookReview(int bookId, int userId, String review, Timestamp time) {
+        this.bookId = bookId;
+        this.userId = userId;
+        this.review = review;
+        this.time = time;
+    }
+
     public int getId() {
         return id;
     }

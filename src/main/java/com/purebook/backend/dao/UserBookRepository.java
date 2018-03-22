@@ -14,7 +14,7 @@ public interface UserBookRepository extends JpaRepository<User, Integer>{
 
     //TODO
     //removeCollection
-    int deleteByUser_IDAndBook_Id(int userId, int bookId);
+    //int deleteByUser_IDAndBook_Id(int userId, int bookId);
 
     //TODO
     //isCollected

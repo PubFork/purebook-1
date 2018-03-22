@@ -4,6 +4,7 @@ package com.purebook.backend.entity;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.tools.corba.se.idl.constExpr.Times;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,8 +31,15 @@ public class User {
     public User() {
     }
 
-    public User(String name) {
+    public User(String name, String password) {
         this.name = name;
+        this.password = password;
+    }
+
+    public User(String name, String password, Timestamp createTime) {
+        this.name = name;
+        this.password = password;
+        this.createTime = createTime;
     }
 
     public String getName() {

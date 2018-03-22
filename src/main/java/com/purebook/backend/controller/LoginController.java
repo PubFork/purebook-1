@@ -21,7 +21,7 @@ public class LoginController {
 	//登陆。
 	@RequestMapping(method=RequestMethod.GET)
 	public JsonResultwithData login(@RequestParam int id,@RequestParam String password){
-		User user=userService.findUserbyID(id);
+		User user=userService.findUserById(id);
 		if(user!=null){
 			if(user.getPassword().equals(password)){
 				JsonResultwithData jsonResultwithData=new JsonResultwithData();

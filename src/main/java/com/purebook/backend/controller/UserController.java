@@ -53,7 +53,7 @@ public class UserController {
 	//查询用户
 	@RequestMapping(value="{id}",method=RequestMethod.GET)
 	public JsonResult findbyID(@PathVariable Integer id){
-		User user=userService.findUserbyID(id);
+		User user=userService.findUserById(id);
 		if(user!=null){
 			user.setPassword(null);
 			JsonResultwithData jsonResultwithData=new JsonResultwithData();
@@ -92,30 +92,30 @@ public class UserController {
 	}
 	
 	//推荐书目
-	@RequestMapping(value="{id}/recommendation",method=RequestMethod.GET)
-	public JsonResult youMayLike(@PathVariable Integer id){
-		List<Book> books=bookService.recommend(id);
-		if(books!=null){
-			JsonResultwithData jsonResultwithData=new JsonResultwithData();
-			jsonResultwithData.setData(books);
-			return jsonResultwithData;
-		}
-		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
-		return jsonResult;
-	}
+//	@RequestMapping(value="{id}/recommendation",method=RequestMethod.GET)
+//	public JsonResult youMayLike(@PathVariable Integer id){
+//		List<Book> books=bookService.recommend(id);
+//		if(books!=null){
+//			JsonResultwithData jsonResultwithData=new JsonResultwithData();
+//			jsonResultwithData.setData(books);
+//			return jsonResultwithData;
+//		}
+//		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
+//		return jsonResult;
+//	}
 	
 	//用户喜欢的书
-	@RequestMapping(value="{id}/collection",method=RequestMethod.GET)
-	public JsonResult getCollection(@PathVariable Integer id){
-		List<Book> books=bookService.findCollection(id);
-		if(books!=null){
-			JsonResultwithData jsonResultwithData=new JsonResultwithData();
-			jsonResultwithData.setData(books);
-			return jsonResultwithData;
-		}
-		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
-		return jsonResult;
-	}
+//	@RequestMapping(value="{id}/collection",method=RequestMethod.GET)
+//	public JsonResult getCollection(@PathVariable Integer id){
+//		List<Book> books=bookService.findCollection(id);
+//		if(books!=null){
+//			JsonResultwithData jsonResultwithData=new JsonResultwithData();
+//			jsonResultwithData.setData(books);
+//			return jsonResultwithData;
+//		}
+//		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
+//		return jsonResult;
+//	}
 	
 	//收藏书
 	@RequestMapping(value="{id}/collection",method=RequestMethod.POST)

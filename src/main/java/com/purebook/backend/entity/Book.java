@@ -18,8 +18,6 @@ public class Book {
     private String name;
     @Column(nullable = false)
     private String author;
-    @Column(name = "author_intro")
-    private String authorIntro;
     private String price;
     private String intro;
     private String cover;
@@ -64,14 +62,6 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String getAuthorIntro() {
-        return authorIntro;
-    }
-
-    public void setAuthorIntro(String authorIntro) {
-        this.authorIntro = authorIntro;
     }
 
     public String getPrice() {
