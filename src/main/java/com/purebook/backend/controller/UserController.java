@@ -2,7 +2,7 @@ package com.purebook.backend.controller;
 
 import java.util.List;
 
-import com.purebook.backend.entity.Excerpt;
+import com.purebook.backend.entity.*;
 import com.purebook.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.result.JsonResult;
 import com.example.result.JsonResultwithData;
 import com.example.result.ResultCode;
-import com.purebook.backend.entity.Book;
-import com.purebook.backend.entity.BookReview;
-import com.purebook.backend.entity.User;
 
 
 @RestController
@@ -32,7 +29,9 @@ public class UserController {
     FavouriteService favouriteService;
 	@Autowired
     ExcerptService excerptService;
-	
+	@Autowired
+    BookListService bookListService;
+
 	//注册新用户
 	@RequestMapping(method = RequestMethod.POST)
 	public JsonResult add(@RequestParam String name,@RequestParam String key){
@@ -188,4 +187,55 @@ public class UserController {
         }
         return excerptService.wirteExcerpt(bookId, id, content);
     }
+
+    //查看某个用户收藏的书单
+    @RequestMapping(value = "{id}/", method = RequestMethod.GET)
+    public JsonResult getUserBookList(@PathVariable Integer id) {
+        List<BookList> bookList = bookListService.findByUserId(id);
+        if (bookList == null) {
+            return new JsonResult(ResultCode.NOT_FOUND);
+        }
+        JsonResultwithData jsonResultwithData = new JsonResultwithData(ResultCode.SUCCESS);
+        jsonResultwithData.setData(bookList);
+        return jsonResultwithData;
+    }
+
+    //收藏书单
+    @RequestMapping(value = "{id}/list", method = RequestMethod.POST)
+    public JsonResult addListUser(@PathVariable Integer id,
+                                  @RequestParam String listName) {
+        if (bookListService.addListUser(id, listName) != null) {
+            JsonResult jsonResult = new JsonResult(ResultCode.SUCCESS);
+            return jsonResult;
+        }
+        JsonResult jsonResult = new JsonResult(ResultCode.NOT_FOUND);
+        return jsonResult;
+    }
+
+    //取消收藏书单
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public JsonResult removeListUser(@PathVariable Integer id,
+                                     @RequestParam String listName) {
+        if (bookListService.deleteByUserIdAndName(id, listName) == 1) {
+            JsonResult jsonResult = new JsonResult(ResultCode.SUCCESS);
+            return jsonResult;
+        }
+        JsonResult jsonResult = new JsonResult(ResultCode.NOT_FOUND);
+        return jsonResult;
+    }
+
+    //判断是否收藏某书单
+    @RequestMapping(value = "{id}/list", method = RequestMethod.GET)
+    public JsonResult isListUser(@PathVariable Integer id,
+                                 @RequestParam String listName) {
+        if (bookListService.isCollectedList(id, listName)) {
+            JsonResult jsonResult = new JsonResult(ResultCode.SUCCESS);
+            return jsonResult;
+        }
+        JsonResult jsonResult = new JsonResult(ResultCode.NOT_FOUND);
+        return jsonResult;
+    }
+
+    //推荐书单
+
 }

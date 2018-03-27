@@ -60,11 +60,11 @@ public class BookController {
 	
 	//搜索书籍
 	@RequestMapping(method=RequestMethod.GET)
-	public JsonResult search(@RequestParam(value="namelike",required=false) String namelike, 
+	public JsonResult search(@RequestParam(value="nameLike",required=false) String nameLike,
 			@RequestParam(value="tag",required=false) String tag){
 		
-		if(namelike!=null){
-			return fuzzySearch(namelike);
+		if(nameLike!=null){
+			return fuzzySearch(nameLike);
 		}
 		else if(tag!=null){
 			return findBookbyTag(tag);
@@ -75,8 +75,8 @@ public class BookController {
 		}
 	}
 	
-	private JsonResult fuzzySearch(String namelike){
-		List<Book> list=bookService.findBookbyName(namelike);
+	private JsonResult fuzzySearch(String nameLike){
+		List<Book> list=bookService.findBookbyName(nameLike);
 		if(list!=null){
 			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 			jsonResultwithData.setData(list);
