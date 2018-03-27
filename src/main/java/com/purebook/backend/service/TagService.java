@@ -11,18 +11,6 @@ import com.purebook.backend.entity.Tag;
 
 @Service
 public class TagService {
-
-//	@Autowired
-//	BookTagDao bookTagDao;
-//
-//	public List<Tag> findTag(Integer id){
-//		return bookTagDao.findTag(id);
-//	}
-//
-//	public List<Tag> getTag(){
-//		return bookTagDao.getTag();
-//	}
-
 	@Autowired
     TagRepository tagRepository;
 

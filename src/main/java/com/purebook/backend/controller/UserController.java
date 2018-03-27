@@ -5,7 +5,6 @@ import java.util.List;
 import com.purebook.backend.entity.Excerpt;
 import com.purebook.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +29,7 @@ public class UserController {
 	@Autowired
 	BookService bookService;
 	@Autowired
-	UserBookService userBookService;
+    FavouriteService favouriteService;
 	@Autowired
     ExcerptService excerptService;
 	
@@ -42,10 +41,10 @@ public class UserController {
 			user.setName(name);
 			user.setPassword(key);
 			user.setCreateTime(new java.sql.Timestamp(new java.util.Date().getTime()));
-//			userService.add(user);
+			userService.addUser(user);
 
 			JsonResultwithData jsonResultwithData=new JsonResultwithData(ResultCode.SUCCESS);
-//			jsonResultwithData.setData(userService.add(user));
+			jsonResultwithData.setData(userService.addUser(user));
 			return jsonResultwithData;
 
 	}
@@ -105,23 +104,23 @@ public class UserController {
 //	}
 	
 	//用户喜欢的书
-//	@RequestMapping(value="{id}/collection",method=RequestMethod.GET)
-//	public JsonResult getCollection(@PathVariable Integer id){
-//		List<Book> books=bookService.findCollection(id);
-//		if(books!=null){
-//			JsonResultwithData jsonResultwithData=new JsonResultwithData();
-//			jsonResultwithData.setData(books);
-//			return jsonResultwithData;
-//		}
-//		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
-//		return jsonResult;
-//	}
+	@RequestMapping(value="{id}/collection",method=RequestMethod.GET)
+	public JsonResult getCollection(@PathVariable Integer id){
+		List<Book> books=bookService.findFavourite(id);
+		if(books!=null){
+			JsonResultwithData jsonResultwithData=new JsonResultwithData();
+			jsonResultwithData.setData(books);
+			return jsonResultwithData;
+		}
+		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
+		return jsonResult;
+	}
 	
 	//收藏书
 	@RequestMapping(value="{id}/collection",method=RequestMethod.POST)
 	public JsonResult getCollection(@PathVariable Integer id, @RequestParam Integer BookID){
 		try {
-			userBookService.addCollection(id, BookID);
+			favouriteService.addFavourite(id, BookID);
 			JsonResult jsonResult=new JsonResult(ResultCode.SUCCESS);
 			return jsonResult;
 		} catch (Exception e) {
@@ -133,7 +132,7 @@ public class UserController {
 	//取消收藏
 	@RequestMapping(value="{id}/collection",method=RequestMethod.DELETE)
 	public JsonResult removeCollection(@PathVariable Integer id, @RequestParam Integer BookID){
-		if(userBookService.removeCollection(id, BookID)==1){
+		if(favouriteService.removeFavourite(id, BookID)==1){
 			JsonResult jsonResult=new JsonResult(ResultCode.SUCCESS);
 			return jsonResult;
 		}
@@ -144,7 +143,7 @@ public class UserController {
 	//是否收藏
 	@RequestMapping(value="{id}/relation",method=RequestMethod.GET)
 	public JsonResult isCollected(@PathVariable Integer id, @RequestParam Integer BookID){
-		if(userBookService.isCollected(id, BookID)){
+		if(favouriteService.isFavourite(id, BookID)){
 			JsonResult jsonResult=new JsonResult(ResultCode.SUCCESS);
 			return jsonResult;
 		}

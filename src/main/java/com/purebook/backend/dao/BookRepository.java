@@ -16,7 +16,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> findByName(String name);
 
     @Query(value = "select * from Book where BookId in " +
-            "(select Book_ID from UserBook group by BookID having Count(UserID) >7) " +
+            "(select Book_ID from Favourtie group by BookID having Count(UserID) >7) " +
             "order by rand() limit 40", nativeQuery = true)
     List<Book> findTop250();
 
@@ -30,9 +30,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     //recommand
 
-    //TODO findCollection
-//    @Query("select b from Book b where b.id in (select BookID from UserBook where UserID=:id)")
-//    List<Book> findCollection(@Param("id") int id);
+    @Query("select b from Book b where b.id in (select u.bookId from Favourite u where u.userId = ?1)")
+    List<Book> findFavourite(int id);
 
     @Query("select b from Book b where b.id in (select r.bookId from BookReview r where r.userId = ?1)")
     List<Book> getReviewedBooks(int userId);

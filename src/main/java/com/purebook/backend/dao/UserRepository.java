@@ -9,7 +9,4 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     User findById(int id);
-
-    //temo
-    //User findByName(String name);
 }

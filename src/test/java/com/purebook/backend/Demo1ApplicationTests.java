@@ -1,17 +1,13 @@
 package com.purebook.backend;
 
 import com.purebook.backend.dao.*;
-import com.purebook.backend.entity.Book;
 import com.purebook.backend.entity.BookReview;
 import com.purebook.backend.entity.User;
-import com.sun.tools.classfile.Exceptions_attribute;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.junit4.SpringRunner;
-import sun.java2d.pipe.hw.ExtendedBufferCapabilities;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -32,7 +28,7 @@ public class Demo1ApplicationTests {
     TagRepository tagRepository;
 
     @Autowired
-    UserBookRepository userBookRepository;
+    FavouriteRepository favouriteRepository;
 
     @Autowired
     UserRepository userRepository;
