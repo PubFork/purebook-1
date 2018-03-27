@@ -2,7 +2,10 @@ package com.purebook.backend.controller;
 
 import java.util.List;
 
+import com.purebook.backend.entity.Excerpt;
+import com.purebook.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,11 +18,6 @@ import com.example.result.ResultCode;
 import com.purebook.backend.entity.Book;
 import com.purebook.backend.entity.BookReview;
 import com.purebook.backend.entity.User;
-import com.purebook.backend.service.BookReviewService;
-import com.purebook.backend.service.BookService;
-import com.purebook.backend.service.UserBookService;
-import com.purebook.backend.service.UserService;
-
 
 
 @RestController
@@ -33,6 +31,8 @@ public class UserController {
 	BookService bookService;
 	@Autowired
 	UserBookService userBookService;
+	@Autowired
+    ExcerptService excerptService;
 	
 	//注册新用户
 	@RequestMapping(method = RequestMethod.POST)
@@ -164,4 +164,29 @@ public class UserController {
 		JsonResult jsonResult = new JsonResult(ResultCode.NOT_FOUND);
 		return jsonResult;
 	}
+
+	//获取用户摘录
+    @RequestMapping(value = "{id}/excerpt", method = RequestMethod.GET)
+    public JsonResult getUserExcerpt(@PathVariable Integer id) {
+	    List<Excerpt> excerpts = excerptService.findByUserId(id);
+        if(excerpts!=null){
+            JsonResultwithData jsonResultwithData = new JsonResultwithData(ResultCode.SUCCESS);
+            jsonResultwithData.setData(excerpts);
+            return jsonResultwithData;
+        }
+        JsonResult jsonResult = new JsonResult(ResultCode.NOT_FOUND);
+        return jsonResult;
+    }
+
+    //用户添加摘录
+    @RequestMapping(value = "{id}/excerpt", method = RequestMethod.POST)
+    public JsonResult addExcerpt(@PathVariable Integer id,
+                                 @RequestParam Integer bookId,
+                                 @RequestParam String content) {
+	    User user = userService.findUserById(id);
+	    if (user == null) {
+	        return new JsonResult(ResultCode.NOT_FOUND);
+        }
+        return excerptService.wirteExcerpt(bookId, id, content);
+    }
 }

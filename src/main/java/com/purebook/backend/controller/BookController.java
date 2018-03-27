@@ -2,6 +2,8 @@ package com.purebook.backend.controller;
 
 import java.util.List;
 
+import com.purebook.backend.entity.Excerpt;
+import com.purebook.backend.service.ExcerptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,8 @@ public class BookController {
 	BookReviewService bookReviewService;
 	@Autowired
 	TagService tagService;
+	@Autowired
+    ExcerptService excerptService;
 	
 	private JsonResult findBookbyTag(String tag){
 		List<Book> list=bookService.findBookbyTag(tag);
@@ -147,4 +151,16 @@ public class BookController {
 		JsonResult jsonResult = new JsonResult(ResultCode.EXCEPTION);
 		return jsonResult;
 	}
+
+	//获取书籍摘录
+    @RequestMapping(value = "{id}/excerpt")
+    public JsonResult getBookExcerpt(@PathVariable Integer id) {
+	    List<Excerpt> excerpts =  excerptService.findByBookId(id);
+	    if (excerpts == null) {
+	        return new JsonResult(ResultCode.NOT_FOUND);
+        }
+        JsonResultwithData jsonResultwithData = new JsonResultwithData(ResultCode.SUCCESS);
+	    jsonResultwithData.setData(excerpts);
+	    return jsonResultwithData;
+    }
 }
