@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FavouriteRepository extends JpaRepository<User, Integer>{
-    void save(Favourite favourite);
+public interface FavouriteRepository extends JpaRepository<Favourite, Integer>{
+    Favourite save(Favourite favourite);
     int deleteByUserIdAndBookId(int userId, int bookId);
     List<Favourite> findByUserIdAndBookId(int userId, int bookId);
 

@@ -18,13 +18,12 @@ public class FavouriteService {
 		favouriteRepository.save(new Favourite(userId, bookId, new Timestamp(System.currentTimeMillis())));
 	}
 
-	public int removeFavourite(int userId, int bookId){
+	public int removeFavourite(int userId, int bookId) {
 		return favouriteRepository.deleteByUserIdAndBookId(userId, bookId);
 	}
 
 
-	public boolean isFavourite(int userId, int bookId){
-		List<Favourite> favourites = favouriteRepository.findByUserIdAndBookId(userId, bookId);
-        return favourites != null;
+	public boolean isFavourite(int userId, int bookId) {
+        return favouriteRepository.findByUserIdAndBookId(userId, bookId).size() != 0;
 	}
 }

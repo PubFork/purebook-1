@@ -26,7 +26,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query(value = "select * from Book where BookID in "
             + "(select BookID from BookReview group by BookID having Count(UserID) >1)"
             + " order by rand() limit 40;", nativeQuery = true)
-    List<Book> findHotest();
+    List<Book> findHot();
 
     //recommand
 

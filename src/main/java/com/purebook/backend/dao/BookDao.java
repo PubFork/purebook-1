@@ -65,7 +65,7 @@ public class BookDao {
 		return null;
 	}
 
-	public List<Book> findHotest(){
+	public List<Book> findHot(){
 		List<Book> bookList=jdbcTemplate.query("select * from Book where BookID in "
 				+ "(select BookID from BookReview group by BookID having Count(UserID) >1)"
 				+ " order by rand() limit 40;", new BeanPropertyRowMapper(Book.class));

@@ -18,7 +18,8 @@ public interface TagRepository extends JpaRepository<Tag, Integer> {
 
     List<Tag> findByBookId(int bookId);
 
-    @Query(value = "select * from Tag where Count>10 order by rand() limit 200", nativeQuery = true)
+//    @Query(value = "select * from Tag where Count>10 order by rand() limit 200", nativeQuery = true)
+    @Query("select t from Tag t where t.count > 10")
     List<Tag> getTag();
 }
 

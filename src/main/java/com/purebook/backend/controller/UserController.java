@@ -1,5 +1,6 @@
 package com.purebook.backend.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.purebook.backend.entity.*;
@@ -65,7 +66,7 @@ public class UserController {
 	//用户的所有书评
 	@RequestMapping(value="{id}/reviews",method=RequestMethod.GET)
 	public JsonResult findBookReview(@PathVariable Integer id){
-		List<BookReview> bookReviews=bookReviewService.findbyUserID(id);
+		List<BookReview> bookReviews=bookReviewService.findByUserID(id);
 		if(bookReviews!=null){
 			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 			jsonResultwithData.setData(bookReviews);
@@ -185,11 +186,12 @@ public class UserController {
 	    if (user == null) {
 	        return new JsonResult(ResultCode.NOT_FOUND);
         }
-        return excerptService.wirteExcerpt(bookId, id, content);
+        excerptService.wirteExcerpt(bookId, id, content);
+        return new JsonResult(ResultCode.SUCCESS);
     }
 
     //查看某个用户收藏的书单
-    @RequestMapping(value = "{id}/", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}/booklist", method = RequestMethod.GET)
     public JsonResult getUserBookList(@PathVariable Integer id) {
         List<BookList> bookList = bookListService.findByUserId(id);
         if (bookList == null) {
@@ -201,10 +203,10 @@ public class UserController {
     }
 
     //收藏书单
-    @RequestMapping(value = "{id}/list", method = RequestMethod.POST)
+    @RequestMapping(value = "{id}/booklist", method = RequestMethod.POST)
     public JsonResult addListUser(@PathVariable Integer id,
-                                  @RequestParam String listName) {
-        if (bookListService.addListUser(id, listName) != null) {
+                                  @RequestParam String name) {
+        if (bookListService.addListUser(id, name) != null) {
             JsonResult jsonResult = new JsonResult(ResultCode.SUCCESS);
             return jsonResult;
         }
@@ -213,10 +215,10 @@ public class UserController {
     }
 
     //取消收藏书单
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "{id}/booklist", method = RequestMethod.DELETE)
     public JsonResult removeListUser(@PathVariable Integer id,
-                                     @RequestParam String listName) {
-        if (bookListService.deleteByUserIdAndName(id, listName) == 1) {
+                                     @RequestParam String name) {
+        if (bookListService.deleteByUserIdAndName(id, name) == 1) {
             JsonResult jsonResult = new JsonResult(ResultCode.SUCCESS);
             return jsonResult;
         }
@@ -225,10 +227,10 @@ public class UserController {
     }
 
     //判断是否收藏某书单
-    @RequestMapping(value = "{id}/list", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}/collectedlist", method = RequestMethod.GET)
     public JsonResult isListUser(@PathVariable Integer id,
-                                 @RequestParam String listName) {
-        if (bookListService.isCollectedList(id, listName)) {
+                                 @RequestParam String name) {
+        if (bookListService.isCollectedList(id, name)) {
             JsonResult jsonResult = new JsonResult(ResultCode.SUCCESS);
             return jsonResult;
         }

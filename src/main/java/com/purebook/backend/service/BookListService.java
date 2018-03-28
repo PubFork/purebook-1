@@ -19,12 +19,7 @@ public class BookListService {
     ListUserRepository listUserRepository;
 
     public List<BookList> findByUserId(int userId) {
-        List<ListUser> listUsers = listUserRepository.findByUserId(userId);
-        List<BookList> bookLists = new ArrayList<>();
-        for (ListUser i : listUsers) {
-            bookLists.add(bookListRepository.findById(i.getId()));
-        }
-        return bookLists;
+        return bookListRepository.searchByUserId(userId);
     }
 
     public ListUser addListUser(int userId, String listName) {
@@ -32,11 +27,11 @@ public class BookListService {
     }
 
     public int deleteByUserIdAndName(int userId, String name) {
-        return listUserRepository.deleteByUserIdAndBookId(userId, bookListRepository.findByName(name).getId());
+        return listUserRepository.deleteByUserIdAndListId(userId, bookListRepository.findByName(name).getId());
     }
 
     public boolean isCollectedList(int userId, String name) {
-        return listUserRepository.getByUserIdAndName(userId, name)!=null;
+        return listUserRepository.getByUserIdAndListId(userId, bookListRepository.findByName(name).getId())!=null;
     }
 
     public List<BookList> findByNameLike(String nameLike) {

@@ -25,6 +25,8 @@ public class BookList {
 
     public BookList() {}
 
+    public BookList(String name) { this.name = name ; }
+
     public int getId() {
         return id;
     }

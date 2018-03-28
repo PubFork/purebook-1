@@ -2,8 +2,8 @@ package com.purebook.backend.controller;
 
 import java.util.List;
 
-import com.purebook.backend.entity.Excerpt;
-import com.purebook.backend.service.ExcerptService;
+import com.purebook.backend.entity.*;
+import com.purebook.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.result.JsonResult;
 import com.example.result.JsonResultwithData;
 import com.example.result.ResultCode;
-import com.purebook.backend.entity.Book;
-import com.purebook.backend.entity.BookReview;
-import com.purebook.backend.entity.Tag;
-import com.purebook.backend.service.BookReviewService;
-import com.purebook.backend.service.BookService;
-import com.purebook.backend.service.TagService;
 
 @RestController
 @RequestMapping(value="v1/books")
@@ -33,9 +27,11 @@ public class BookController {
 	TagService tagService;
 	@Autowired
     ExcerptService excerptService;
+	@Autowired
+    BookListService bookListService;
 	
 	private JsonResult findBookbyTag(String tag){
-		List<Book> list=bookService.findBookbyTag(tag);
+		List<Book> list=bookService.findBookByTag(tag);
 		if(list!=null){
 			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 			jsonResultwithData.setData(list);
@@ -48,7 +44,7 @@ public class BookController {
 	//查询书
 	@RequestMapping(value="{id}",method=RequestMethod.GET)
 	public JsonResult findBookbyID(@PathVariable int id){
-		Book book =bookService.findBookbyID(id);
+		Book book =bookService.findBookByID(id);
 		if(book!=null){
 			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 			jsonResultwithData.setData(book);
@@ -76,7 +72,7 @@ public class BookController {
 	}
 	
 	private JsonResult fuzzySearch(String nameLike){
-		List<Book> list=bookService.findBookbyName(nameLike);
+		List<Book> list=bookService.findBookByName(nameLike);
 		if(list!=null){
 			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 			jsonResultwithData.setData(list);
@@ -102,7 +98,7 @@ public class BookController {
 	//查看用户的所有书评
 	@RequestMapping(value="{id}/reviews",method=RequestMethod.GET)
 	public JsonResult getReview(@PathVariable Integer id){
-		List<BookReview> bookReviews=bookReviewService.findbyBookID(id);
+		List<BookReview> bookReviews=bookReviewService.findByBookID(id);
 		if(bookReviews!=null){
 			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 			jsonResultwithData.setData(bookReviews);
@@ -140,9 +136,9 @@ public class BookController {
 	}
 	
 	//热门
-	@RequestMapping(value="hotones")
-	public JsonResult getHotest(){
-		List<Book> books=bookService.findHotest();
+	@RequestMapping(value="hot")
+	public JsonResult getHot(){
+		List<Book> books=bookService.findHot();
 		if(books!=null){
 			JsonResultwithData jsonResultwithData=new JsonResultwithData(ResultCode.SUCCESS);
 			jsonResultwithData.setData(books);
@@ -162,5 +158,17 @@ public class BookController {
         JsonResultwithData jsonResultwithData = new JsonResultwithData(ResultCode.SUCCESS);
 	    jsonResultwithData.setData(excerpts);
 	    return jsonResultwithData;
+    }
+
+    //模糊搜索书单
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public JsonResult findByNameLike(@RequestParam String nameLike) {
+        List<BookList> bookLists = bookListService.findByNameLike(nameLike);
+        if (bookLists != null) {
+            JsonResultwithData jsonResultwithData = new JsonResultwithData(ResultCode.SUCCESS);
+            jsonResultwithData.setData(bookLists);
+            return jsonResultwithData;
+        }
+        return new JsonResult(ResultCode.NOT_FOUND);
     }
 }

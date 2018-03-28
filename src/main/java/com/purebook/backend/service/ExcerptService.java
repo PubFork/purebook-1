@@ -15,9 +15,12 @@ public class ExcerptService {
     @Autowired
     ExcerptRepository excerptRepository;
 
-    public JsonResult wirteExcerpt(int bookId, int userId, String content) {
-        excerptRepository.save(new Excerpt(bookId, userId, content, new Timestamp(System.currentTimeMillis())));
-        return new JsonResult(ResultCode.SUCCESS);
+    public boolean wirteExcerpt(int bookId, int userId, String content) {
+        if(excerptRepository.save(
+                new Excerpt(bookId, userId, content, new Timestamp(System.currentTimeMillis()))) == null) {
+            return false;
+        }
+        return true;
     }
 
     public List<Excerpt> findByBookId(int bookId) {

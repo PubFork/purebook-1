@@ -20,15 +20,15 @@ public class BookService {
 	@Autowired
     TagRepository tagRepository;
 
-	public Book findBookbyID(int id){
+	public Book findBookByID(int id){
 		return bookRepository.findById(id);
 	}
 
-	public List<Book> findBookbyTag(String tag){
+	public List<Book> findBookByTag(String tag){
 		return tagRepository.findBook(tag);
 	}
 
-	public List<Book> findBookbyName(String name){
+	public List<Book> findBookByName(String name){
 		return bookRepository.findByName(name);
 	}
 
@@ -40,8 +40,8 @@ public class BookService {
 		return bookRepository.findLatest();
 	}
 
-	public List<Book> findHotest(){
-		return bookRepository.findHotest();
+	public List<Book> findHot(){
+		return bookRepository.findHot();
 	}
 
 //	public List<Book> recommend(Integer id){

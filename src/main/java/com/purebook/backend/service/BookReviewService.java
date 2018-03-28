@@ -20,11 +20,11 @@ public class BookReviewService {
     @Autowired
     BookReviewRepository bookReviewRepository;
 
-    public List<BookReview> findbyUserID(int userid){
+    public List<BookReview> findByUserID(int userid){
         return bookReviewRepository.findByUserId(userid);
     }
 
-    public List<BookReview> findbyBookID(int bookid){
+    public List<BookReview> findByBookID(int bookid){
         return bookReviewRepository.findByBookId(bookid);
     }
 
