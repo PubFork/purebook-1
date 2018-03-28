@@ -15,25 +15,27 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findByName(String name);
 
-    @Query(value = "select * from Book where BookId in " +
-            "(select Book_ID from Favourtie group by BookID having Count(UserID) >7) " +
-            "order by rand() limit 40", nativeQuery = true)
+//    @Query(value = "select * from Book where BookId in " +
+//            "(select Book_ID from Favourtie group by BookID having Count(UserID) >7) " +
+//            "order by rand() limit 40", nativeQuery = true)
+    @Query("select b from Book b, Favourite f where b.id = f.bookId group by f.bookId having count(f.userId) > 7")
     List<Book> findTop250();
 
-    @Query(value = "select * from Book where id > 27000000 order by rand() limit 40", nativeQuery = true)
+    @Query("select b from Book b where b.id > 27000000")
     List<Book> findLatest();
 
-    @Query(value = "select * from Book where BookID in "
-            + "(select BookID from BookReview group by BookID having Count(UserID) >1)"
-            + " order by rand() limit 40;", nativeQuery = true)
+//    @Query(value = "select * from Book where BookID in "
+//            + "(select BookID from BookReview group by BookID having Count(UserID) >1)"
+//            + " order by rand() limit 40;", nativeQuery = true)
+    @Query("select b from Book b, BookReview f where b.id = f.bookId group by f.bookId having count(f.userId) > 1")
     List<Book> findHot();
 
     //recommand
 
-    @Query("select b from Book b where b.id in (select u.bookId from Favourite u where u.userId = ?1)")
+    @Query("select b from Book b, Favourite f where b.id = f.bookId and f.userId = ?1")
     List<Book> findFavourite(int id);
 
-    @Query("select b from Book b where b.id in (select r.bookId from BookReview r where r.userId = ?1)")
+    @Query("select b from Book b, BookReview r where b.id = r.bookId and r.userId = ?1")
     List<Book> getReviewedBooks(int userId);
 
 }

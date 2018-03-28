@@ -5,6 +5,7 @@ import com.example.result.JsonResultwithData;
 import com.example.result.ResultCode;
 import com.purebook.backend.entity.Author;
 import com.purebook.backend.service.AuthorService;
+import com.purebook.backend.util.UnifiedResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +24,14 @@ public class AuthorController {
     @RequestMapping(value="{name}", method= RequestMethod.GET)
     public JsonResult getAuthorInfo(@PathVariable String name){
         List<Author> authorInfo = authorService.findByName(name);
-        if(authorInfo!=null){
-            JsonResultwithData jsonResultwithData=new JsonResultwithData();
-            jsonResultwithData.setData(authorInfo);
-            return jsonResultwithData;
-        }
-        JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
-        return jsonResult;
+//        if(authorInfo!=null){
+//            JsonResultwithData jsonResultwithData=new JsonResultwithData();
+//            jsonResultwithData.setData(authorInfo);
+//            return jsonResultwithData;
+//        }
+//        JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
+//        return jsonResult;
+        UnifiedResult unifiedResult = new UnifiedResult();
+        return unifiedResult.unifiedResult(authorInfo, ResultCode.NOT_FOUND);
     }
 }

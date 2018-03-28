@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.security.PublicKey;
 
 @Entity
 public class Tag {
@@ -16,6 +17,10 @@ public class Tag {
     @Column(nullable = false)
     private String field;
     private int count;
+
+    public Tag() {}
+
+    public Tag(String field, int count) { this.field = field; this.count = count; }
 
     public int getId() {
         return id;

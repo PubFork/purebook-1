@@ -14,12 +14,12 @@ public class FavouriteService {
 	@Autowired
     FavouriteRepository favouriteRepository;
 
-	public void addFavourite(int userId, int bookId) {
-		favouriteRepository.save(new Favourite(userId, bookId, new Timestamp(System.currentTimeMillis())));
+	public boolean addFavourite(int userId, int bookId) {
+		return favouriteRepository.save(new Favourite(userId, bookId, new Timestamp(System.currentTimeMillis()))) != null;
 	}
 
-	public int removeFavourite(int userId, int bookId) {
-		return favouriteRepository.deleteByUserIdAndBookId(userId, bookId);
+	public boolean removeFavourite(int userId, int bookId) {
+		return favouriteRepository.deleteByUserIdAndBookId(userId, bookId) == 1;
 	}
 
 

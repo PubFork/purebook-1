@@ -22,16 +22,16 @@ public class BookListService {
         return bookListRepository.searchByUserId(userId);
     }
 
-    public ListUser addListUser(int userId, String listName) {
-        return listUserRepository.save(new ListUser(userId, bookListRepository.findByName(listName).getId()));
+    public boolean addListUser(int userId, String listName) {
+        return listUserRepository.save(new ListUser(userId, bookListRepository.findByName(listName).getId())) != null;
     }
 
-    public int deleteByUserIdAndName(int userId, String name) {
-        return listUserRepository.deleteByUserIdAndListId(userId, bookListRepository.findByName(name).getId());
+    public boolean deleteByUserIdAndName(int userId, String name) {
+        return listUserRepository.deleteByUserIdAndListId(userId, bookListRepository.findByName(name).getId()) == 1;
     }
 
     public boolean isCollectedList(int userId, String name) {
-        return listUserRepository.getByUserIdAndListId(userId, bookListRepository.findByName(name).getId())!=null;
+        return listUserRepository.getByUserIdAndListId(userId, bookListRepository.findByName(name).getId()) != null;
     }
 
     public List<BookList> findByNameLike(String nameLike) {

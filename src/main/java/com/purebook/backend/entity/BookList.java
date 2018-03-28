@@ -17,7 +17,7 @@ public class BookList {
     private String intro;
 
     @Column(name = "user_id")
-    private int useId;
+    private int userId;
 
     private int stars;
 
@@ -25,7 +25,11 @@ public class BookList {
 
     public BookList() {}
 
-    public BookList(String name) { this.name = name ; }
+    //retore after test finished
+    //public BookList(String name) { this.name = name; }
+
+    //for test
+    public BookList(String name, int userId) { this.name = name; this.userId = userId; }
 
     public int getId() {
         return id;
@@ -59,12 +63,12 @@ public class BookList {
         this.stars = stars;
     }
 
-    public int getUseId() {
-        return useId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUseId(int useId) {
-        this.useId = useId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getCover() {

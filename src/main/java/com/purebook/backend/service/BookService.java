@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.purebook.backend.dao.BookRepository;
 import com.purebook.backend.dao.TagRepository;
+import com.purebook.backend.util.RandomList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,8 @@ public class BookService {
 	}
 
 	public List<Book> findBookByTag(String tag){
-		return tagRepository.findBook(tag);
+        RandomList randomList = new RandomList();
+		return randomList.getRandomList(tagRepository.findBook(tag), 10);
 	}
 
 	public List<Book> findBookByName(String name){
@@ -33,15 +35,18 @@ public class BookService {
 	}
 
 	public List<Book> findTop250(){
-		return bookRepository.findTop250();
+        RandomList randomList = new RandomList();
+        return randomList.getRandomList(bookRepository.findTop250(), 40);
 	}
 
 	public List<Book> findLatest(){
-		return bookRepository.findLatest();
+	    RandomList randomList = new RandomList();
+		return randomList.getRandomList(bookRepository.findLatest(), 40);
 	}
 
 	public List<Book> findHot(){
-		return bookRepository.findHot();
+        RandomList randomList = new RandomList();
+        return randomList.getRandomList(bookRepository.findHot(), 40);
 	}
 
 //	public List<Book> recommend(Integer id){

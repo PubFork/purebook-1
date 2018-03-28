@@ -16,4 +16,7 @@ public interface BookListRepository extends JpaRepository<BookList, Integer> {
 
     @Query("select b from BookList b, ListUser l where b.id = l.listId and l.userId = ?1")
     List<BookList> searchByUserId(int id);
+
+    //for test
+    List<BookList> findByUserId(int userId);
 }

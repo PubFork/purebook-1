@@ -28,11 +28,7 @@ public class BookReviewService {
         return bookReviewRepository.findByBookId(bookid);
     }
 
-    public int writeReview(int bookId, int userId, String review){
-        if(bookReviewRepository.save(
-                new BookReview(bookId, userId, review, new Timestamp(System.currentTimeMillis()))) == null) {
-            return 0;
-        }
-        return 1;
+    public boolean writeReview(int bookId, int userId, String review) {
+        return bookReviewRepository.save(new BookReview(bookId, userId, review, new Timestamp(System.currentTimeMillis()))) != null;
     }
 }

@@ -2,6 +2,7 @@ package com.purebook.backend.controller;
 
 import java.util.List;
 
+import com.purebook.backend.util.UnifiedResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,12 +27,14 @@ public class TagController {
 	@RequestMapping
 	public JsonResult getTags(){
 		List<Tag> tags= tagService.getTag();
-		if(tags!=null){
-			JsonResultwithData jsonResultwithData=new JsonResultwithData(ResultCode.SUCCESS);
-			jsonResultwithData.setData(tags);
-			return jsonResultwithData;
-		}
-		JsonResult jsonResult = new JsonResult(ResultCode.EXCEPTION);
-		return jsonResult;
+//		if(tags!=null){
+//			JsonResultwithData jsonResultwithData=new JsonResultwithData(ResultCode.SUCCESS);
+//			jsonResultwithData.setData(tags);
+//			return jsonResultwithData;
+//		}
+//		JsonResult jsonResult = new JsonResult(ResultCode.EXCEPTION);
+//		return jsonResult;
+		UnifiedResult unifiedResult = new UnifiedResult();
+		return unifiedResult.unifiedResult(tags, ResultCode.EXCEPTION);
 	}
 }

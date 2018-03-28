@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 public interface TagRepository extends JpaRepository<Tag, Integer> {
 
-    @Query(value = "select * from  Book where BookID in "
-            + "(select BookID from BookTag where Field = ?1) order by rand() limit 10 ;", nativeQuery = true)
+    @Query("select b from Book b, Tag t where b.id = t.bookId and t.field = ?1")
     List<Book> findBook(String field);
 
     List<Tag> findByBookId(int bookId);
