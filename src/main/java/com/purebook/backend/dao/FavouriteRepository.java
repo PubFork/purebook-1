@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface FavouriteRepository extends JpaRepository<Favourite, Integer>{
     Favourite save(Favourite favourite);
-    int deleteByUserIdAndBookId(int userId, int bookId);
-    List<Favourite> findByUserIdAndBookId(int userId, int bookId);
+    int deleteByUserIdAndBookId(String userId, int bookId);
+    List<Favourite> findByUserIdAndBookId(String userId, int bookId);
 
 }

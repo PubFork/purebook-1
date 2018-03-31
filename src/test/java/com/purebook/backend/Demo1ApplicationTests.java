@@ -63,8 +63,8 @@ public class Demo1ApplicationTests {
 
     @Test
     public void testUser() throws Exception {
-	    userRepository.save(new User("Amy" ,"amypassword", new Timestamp(System.currentTimeMillis())));
-	    userRepository.save(new User("Bob", "bobpassword", new Timestamp(System.currentTimeMillis())));
+	    userRepository.save(new User("Amy", new Timestamp(System.currentTimeMillis())));
+	    userRepository.save(new User("Bob", new Timestamp(System.currentTimeMillis())));
 
 	    User user = userRepository.findById(14);
 	    assertThat(user).isNull();

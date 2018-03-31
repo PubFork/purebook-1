@@ -13,14 +13,14 @@ public class ListUser {
     private int id;
 
     @Column(name = "user_id")
-    private int userId;
+    private String userId;
 
     @Column(name = "list_id")
     private int listId;
 
     public ListUser() {}
 
-    public ListUser(int userId, int listId) {
+    public ListUser(String userId, int listId) {
         this.userId = userId;
         this.listId = listId;
     }
@@ -33,11 +33,11 @@ public class ListUser {
         return id;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

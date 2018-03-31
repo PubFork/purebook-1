@@ -16,11 +16,9 @@ import javax.validation.constraints.NotNull;
 public class User {
 
     @Id
-    @GeneratedValue
-    private int id;
-    @Column(nullable = false)
+    private String userId;
+    //@Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     private String password;
     private String phone;
     private String avatar;
@@ -31,14 +29,13 @@ public class User {
     public User() {
     }
 
-    public User(String name, String password) {
-        this.name = name;
+    public User(String userId, String password) {
+        this.userId = userId;
         this.password = password;
     }
 
-    public User(String name, String password, Timestamp createTime) {
-        this.name = name;
-        this.password = password;
+    public User(String userId, Timestamp createTime) {
+        this.userId = userId;
         this.createTime = createTime;
     }
 
@@ -50,12 +47,12 @@ public class User {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {

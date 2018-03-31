@@ -14,7 +14,7 @@ public class Excerpt {
     private int id;
 
     @Column(name = "user_id")
-    private int userId;
+    private String userId;
 
     @Column(name = "book_id")
     private int bookId;
@@ -26,7 +26,7 @@ public class Excerpt {
 
     public Excerpt() {}
 
-    public Excerpt(int userId, int bookId, String content, Timestamp createTime) {
+    public Excerpt(String userId, int bookId, String content, Timestamp createTime) {
         this.userId = userId;
         this.bookId = bookId;
         this.content = content;
@@ -57,11 +57,11 @@ public class Excerpt {
         return createTime;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

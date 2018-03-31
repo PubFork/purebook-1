@@ -18,19 +18,19 @@ public class BookListService {
     @Autowired
     ListUserRepository listUserRepository;
 
-    public List<BookList> findByUserId(int userId) {
+    public List<BookList> findByUserId(String userId) {
         return bookListRepository.searchByUserId(userId);
     }
 
-    public boolean addListUser(int userId, String listName) {
+    public boolean addListUser(String userId, String listName) {
         return listUserRepository.save(new ListUser(userId, bookListRepository.findByName(listName).getId())) != null;
     }
 
-    public boolean deleteByUserIdAndName(int userId, String name) {
+    public boolean deleteByUserIdAndName(String userId, String name) {
         return listUserRepository.deleteByUserIdAndListId(userId, bookListRepository.findByName(name).getId()) == 1;
     }
 
-    public boolean isCollectedList(int userId, String name) {
+    public boolean isCollectedList(String userId, String name) {
         return listUserRepository.getByUserIdAndListId(userId, bookListRepository.findByName(name).getId()) != null;
     }
 

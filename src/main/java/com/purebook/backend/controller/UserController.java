@@ -36,13 +36,13 @@ public class UserController {
 
 	//注册新用户
 	@RequestMapping(method = RequestMethod.POST)
-	public JsonResult add(@RequestParam String name,@RequestParam String key){
+	public JsonResult add(@RequestParam String name){
 
 //			User user=new User();
 //			user.setName(name);
 //			user.setPassword(key);
 //			user.setCreateTime(new java.sql.Timestamp(new java.util.Date().getTime()));
-            User user = new User(name, key, new Timestamp(System.currentTimeMillis()));
+            User user = new User(name, new Timestamp(System.currentTimeMillis()));
 			userService.addUser(user);
 
 			JsonResultwithData jsonResultwithData=new JsonResultwithData(ResultCode.SUCCESS);
@@ -54,7 +54,7 @@ public class UserController {
 	
 	//查询用户
 	@RequestMapping(value="{id}",method=RequestMethod.GET)
-	public JsonResult findbyID(@PathVariable Integer id){
+	public JsonResult findbyID(@PathVariable String id){
 		User user=userService.findUserById(id);
 //		if(user!=null){
 //			user.setPassword(null);

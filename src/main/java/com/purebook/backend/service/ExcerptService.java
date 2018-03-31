@@ -15,15 +15,15 @@ public class ExcerptService {
     @Autowired
     ExcerptRepository excerptRepository;
 
-    public boolean wirteExcerpt(int bookId, int userId, String content) {
-        return excerptRepository.save(new Excerpt(bookId, userId, content, new Timestamp(System.currentTimeMillis()))) != null;
+    public boolean wirteExcerpt(int bookId, String userId, String content) {
+        return excerptRepository.save(new Excerpt(userId, bookId, content, new Timestamp(System.currentTimeMillis()))) != null;
     }
 
     public List<Excerpt> findByBookId(int bookId) {
         return excerptRepository.findByBookId(bookId);
     }
 
-    public List<Excerpt> findByUserId(int userId) {
+    public List<Excerpt> findByUserId(String userId) {
         return excerptRepository.findByUserId(userId);
     }
 

@@ -14,16 +14,16 @@ public class FavouriteService {
 	@Autowired
     FavouriteRepository favouriteRepository;
 
-	public boolean addFavourite(int userId, int bookId) {
+	public boolean addFavourite(String userId, int bookId) {
 		return favouriteRepository.save(new Favourite(userId, bookId, new Timestamp(System.currentTimeMillis()))) != null;
 	}
 
-	public boolean removeFavourite(int userId, int bookId) {
+	public boolean removeFavourite(String userId, int bookId) {
 		return favouriteRepository.deleteByUserIdAndBookId(userId, bookId) == 1;
 	}
 
 
-	public boolean isFavourite(int userId, int bookId) {
+	public boolean isFavourite(String userId, int bookId) {
         return favouriteRepository.findByUserIdAndBookId(userId, bookId).size() != 0;
 	}
 }

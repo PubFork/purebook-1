@@ -15,8 +15,8 @@ public interface BookListRepository extends JpaRepository<BookList, Integer> {
     List<BookList> findByNameContaining(String nameLike);
 
     @Query("select b from BookList b, ListUser l where b.id = l.listId and l.userId = ?1")
-    List<BookList> searchByUserId(int id);
+    List<BookList> searchByUserId(String id);
 
     //for test
-    List<BookList> findByUserId(int userId);
+    List<BookList> findByUserId(String userId);
 }

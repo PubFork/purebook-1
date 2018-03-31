@@ -20,7 +20,7 @@ public class BookReviewService {
     @Autowired
     BookReviewRepository bookReviewRepository;
 
-    public List<BookReview> findByUserID(int userid){
+    public List<BookReview> findByUserID(String userid){
         return bookReviewRepository.findByUserId(userid);
     }
 
@@ -28,7 +28,7 @@ public class BookReviewService {
         return bookReviewRepository.findByBookId(bookid);
     }
 
-    public boolean writeReview(int bookId, int userId, String review) {
+    public boolean writeReview(int bookId, String userId, String review) {
         return bookReviewRepository.save(new BookReview(bookId, userId, review, new Timestamp(System.currentTimeMillis()))) != null;
     }
 }

@@ -36,6 +36,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> findFavourite(int id);
 
     @Query("select b from Book b, BookReview r where b.id = r.bookId and r.userId = ?1")
-    List<Book> getReviewedBooks(int userId);
+    List<Book> getReviewedBooks(String userId);
 
 }
