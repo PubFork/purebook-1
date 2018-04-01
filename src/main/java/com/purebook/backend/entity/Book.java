@@ -13,11 +13,11 @@ import javax.validation.constraints.NotNull;
 public class Book {
 
     @Id
-    @GeneratedValue
     private int id;
     private String name;
     private String author;
     private String price;
+    @Column(length = 16777216)
     private String intro;
     private String cover;
     private String publisher;

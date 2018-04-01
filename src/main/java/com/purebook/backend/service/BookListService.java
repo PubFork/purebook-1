@@ -1,7 +1,9 @@
 package com.purebook.backend.service;
 
 import com.purebook.backend.dao.BookListRepository;
+import com.purebook.backend.dao.BooklistBookRepository;
 import com.purebook.backend.dao.ListUserRepository;
+import com.purebook.backend.entity.Book;
 import com.purebook.backend.entity.BookList;
 import com.purebook.backend.entity.ListUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class BookListService {
 
     @Autowired
     ListUserRepository listUserRepository;
+
+    @Autowired
+    BooklistBookRepository booklistBookRepository;
 
     public List<BookList> findByUserId(String userId) {
         return bookListRepository.searchByUserId(userId);
@@ -36,5 +41,9 @@ public class BookListService {
 
     public List<BookList> findByNameLike(String nameLike) {
         return bookListRepository.findByNameContaining(nameLike);
+    }
+
+    public List<Book> searchBookByBooklistName(String userId, String name) {
+        return booklistBookRepository.searchByBooklistName(userId, name);
     }
 }

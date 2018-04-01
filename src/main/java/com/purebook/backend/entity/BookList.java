@@ -1,11 +1,9 @@
 package com.purebook.backend.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "booklist")
 public class BookList {
 
     @Id
@@ -18,8 +16,6 @@ public class BookList {
 
     @Column(name = "user_id")
     private String userId;
-
-    private int stars;
 
     private String cover;
 
@@ -53,14 +49,6 @@ public class BookList {
 
     public String getIntro() {
         return intro;
-    }
-
-    public int getStars() {
-        return stars;
-    }
-
-    public void setStars(int stars) {
-        this.stars = stars;
     }
 
     public String getUserId() {

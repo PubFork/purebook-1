@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.purebook.backend.dao.BookReviewRepository;
+import com.purebook.backend.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -28,7 +29,11 @@ public class BookReviewService {
         return bookReviewRepository.findByBookId(bookid);
     }
 
-    public boolean writeReview(int bookId, String userId, String review) {
-        return bookReviewRepository.save(new BookReview(bookId, userId, review, new Timestamp(System.currentTimeMillis()))) != null;
+    public boolean writeReview(int bookId, String userId, String review, String title) {
+        return bookReviewRepository.save(new BookReview(bookId, userId, review, new Timestamp(System.currentTimeMillis()), title)) != null;
+    }
+
+    public BookReview findById(int id) {
+        return bookReviewRepository.findById(id);
     }
 }

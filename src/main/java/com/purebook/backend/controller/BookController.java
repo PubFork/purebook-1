@@ -103,11 +103,19 @@ public class BookController {
         UnifiedResult unifiedResult = new UnifiedResult();
         return unifiedResult.unifiedResult(tags, ResultCode.NOT_FOUND);
 	}
-	
+
+	//获取单个书评
+	@RequestMapping(value = "{id}/review", method = RequestMethod.GET)
+    public JsonResult getSingleReview(@PathVariable int id) {
+	    BookReview bookReview = bookReviewService.findById(id);
+        UnifiedResult unifiedResult = new UnifiedResult();
+        return unifiedResult.unifiedResult(bookReview, ResultCode.NOT_FOUND);
+    }
+
 	//查看用户的所有书评
 	@RequestMapping(value="{id}/reviews",method=RequestMethod.GET)
-	public JsonResult getReview(@PathVariable Integer id){
-		List<BookReview> bookReviews=bookReviewService.findByBookID(id);
+	public JsonResult getReview(@PathVariable String id){
+		List<BookReview> bookReviews=bookReviewService.findByUserID(id);
 //		if(bookReviews!=null){
 //			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 //			jsonResultwithData.setData(bookReviews);

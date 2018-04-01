@@ -41,11 +41,11 @@ public class ListUser {
         this.userId = userId;
     }
 
-    public int getListId() {
+    public int getListName() {
         return listId;
     }
 
-    public void setListId(int listId) {
+    public void setListName(int listId) {
         this.listId = listId;
     }
 }

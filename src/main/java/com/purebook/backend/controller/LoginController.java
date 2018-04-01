@@ -21,7 +21,7 @@ public class LoginController {
 
 	@Autowired
 	UserService userService;
-	
+
 	//登陆。
 //	@RequestMapping(method=RequestMethod.GET)
 //	public JsonResultwithData login(@RequestParam int id,@RequestParam String password){
@@ -52,28 +52,29 @@ public class LoginController {
 
 	@ResponseBody
 	@RequestMapping(value = "/decodeUserInfo", method = RequestMethod.POST)
-	public Map decodeUserInfo(String encryptedData, String iv, String code) {
-
+//    public Map decodeUserInfo(String encryptedData, String iv, String code) {
+	public Map decodeUserInfo(@RequestBody Map<String, String> request) {
+        //System.out.print(request.get("encryptedData") + ":" + request.get("iv") + ":" + request.get("code"));
 		Map map = new HashMap();
 
 		//登录凭证不能为空
-		if (code == null || code.length() == 0) {
+		if (request.get("code") == null || request.get("code").length() == 0) {
 			map.put("status", 0);
 			map.put("msg", "code 不能为空");
 			return map;
 		}
 
 		//小程序唯一标识   (在微信小程序管理后台获取)
-		String wxspAppid = "xxxxxxxxxxxxxx";
+		String wxspAppid = "";
 		//小程序的 app secret (在微信小程序管理后台获取)
-		String wxspSecret = "xxxxxxxxxxxxxx";
+		String wxspSecret = "";
 		//授权（必填）
 		String grant_type = "authorization_code";
 
 
 		//////////////// 1、向微信服务器 使用登录凭证 code 获取 session_key 和 openid ////////////////
 		//请求参数
-		String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + grant_type;
+		String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + request.get("code") + "&grant_type=" + grant_type;
 		//发送请求
 		String sr = HttpRequest.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
 		//解析相应内容（转换成json对象）
@@ -87,11 +88,18 @@ public class LoginController {
 
         User user = new User(openid, new Timestamp(System.currentTimeMillis()));
         userService.addUser(user);
+        user.setName(request.get("userName"));
+        System.out.print(user.getName());
 
 
 		//////////////// 2、对encryptedData加密数据进行AES解密 ////////////////
+
 		try {
-			String result = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
+            System.out.print(request.get("encryptedData") + "\n" + request.get("iv") + "\n" + request.get("code") + "\n");
+
+            String result = AesCbcUtil.decrypt(request.get("encryptedData"), session_key, request.get("iv"), "UTF-8");
+			//System.out.print(result+ "is");
+
 			if (null != result && result.length() > 0) {
 				map.put("status", 1);
 				map.put("msg", "解密成功");
@@ -112,9 +120,9 @@ public class LoginController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		map.put("status", 0);
-		map.put("msg", "解密失败");
-		return map;
+        map.put("status", 0);
+        map.put("msg", "解密失败");
+        return map;
 	}
 
 }

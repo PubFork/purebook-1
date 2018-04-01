@@ -22,13 +22,24 @@ public class BookReview {
     @Column(nullable = false)
     private Timestamp time;
 
+    private String title;
+
     public BookReview() {}
 
-    public BookReview(int bookId, String userId, String review, Timestamp time) {
+    public BookReview(int bookId, String userId, String review, Timestamp time, String title) {
         this.bookId = bookId;
         this.userId = userId;
         this.review = review;
         this.time = time;
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getId() {

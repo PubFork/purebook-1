@@ -53,11 +53,12 @@ public class BookService {
 //		return bookRepository.recommend(id);
 //	}
 //
-	public List<Book> findFavourite(Integer id){
+	public List<Book> findFavourite(String id){
+		System.out.print("wwwwwwwwwwwww");
 		return bookRepository.findFavourite(id);
 	}
 
-	public List<Book> getReviewedBooks(Integer uid){
+	public List<Book> getReviewedBooks(String uid){
 		return bookRepository.getReviewedBooks(uid);
 	}
 }
