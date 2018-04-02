@@ -136,7 +136,7 @@ public class UserController {
 	//收藏书
 	@RequestMapping(value="{id}/collection",method=RequestMethod.POST)
 //	public JsonResult getCollection(@PathVariable String id, @RequestParam Integer BookID){
-    public JsonResult getCollection(@PathVariable String id, @RequestParam Favourite favourite){
+    public JsonResult getCollection(@PathVariable String id, @RequestBody Favourite favourite){
 //		try {
 //			favouriteService.addFavourite(id, BookID);
 //			JsonResult jsonResult=new JsonResult(ResultCode.SUCCESS);
@@ -218,7 +218,7 @@ public class UserController {
 //        excerptService.wirteExcerpt(bookId, id, content);
 //        return new JsonResult(ResultCode.SUCCESS);
         UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, excerptService.wirteExcerpt((Integer)request.get("bookId"), id, (String)request.get("content")));
+        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, excerptService.wirteExcerpt((int)request.get("bookId"), id, (String)request.get("content")));
     }
 
     //查看某个用户收藏的书单

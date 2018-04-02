@@ -28,7 +28,10 @@ public class BookListService {
     }
 
     public boolean addListUser(String userId, String listName) {
-        return listUserRepository.save(new ListUser(userId, bookListRepository.findByName(listName).getId())) != null;
+        if (listUserRepository.getByUserIdAndListId(userId, bookListRepository.findByName(listName).getId()) == null) {
+            return listUserRepository.save(new ListUser(userId, bookListRepository.findByName(listName).getId())) != null;
+        }
+        return false;
     }
 
     public boolean deleteByUserIdAndName(String userId, String name) {

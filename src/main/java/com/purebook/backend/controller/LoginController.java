@@ -66,7 +66,6 @@ public class LoginController {
 
 
 
-
 		//////////////// 1、向微信服务器 使用登录凭证 code 获取 session_key 和 openid ////////////////
 		//请求参数
 		String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + request.get("code") + "&grant_type=" + grant_type;
