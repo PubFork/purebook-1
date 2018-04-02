@@ -54,7 +54,7 @@ public class LoginController {
 	@RequestMapping(value = "/decodeUserInfo", method = RequestMethod.POST)
 //    public Map decodeUserInfo(String encryptedData, String iv, String code) {
 	public Map decodeUserInfo(@RequestBody Map<String, String> request) {
-        //System.out.print(request.get("encryptedData") + ":" + request.get("iv") + ":" + request.get("code"));
+        System.out.print(request.get("encryptedData") + ":" + request.get("iv") + ":" + request.get("code"));
 		Map map = new HashMap();
 
 		//登录凭证不能为空
@@ -64,12 +64,7 @@ public class LoginController {
 			return map;
 		}
 
-		//小程序唯一标识   (在微信小程序管理后台获取)
-		String wxspAppid = "";
-		//小程序的 app secret (在微信小程序管理后台获取)
-		String wxspSecret = "";
-		//授权（必填）
-		String grant_type = "authorization_code";
+
 
 
 		//////////////// 1、向微信服务器 使用登录凭证 code 获取 session_key 和 openid ////////////////
@@ -87,8 +82,9 @@ public class LoginController {
 
 
         User user = new User(openid, new Timestamp(System.currentTimeMillis()));
+		user.setName(request.get("userName"));
+		user.setAvatar(request.get("userAvatar"));
         userService.addUser(user);
-        user.setName(request.get("userName"));
         System.out.print(user.getName());
 
 

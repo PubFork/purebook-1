@@ -80,7 +80,6 @@ public class UserController {
         return unifiedResult.unifiedResult(bookReviews, ResultCode.NOT_FOUND);
 	}
 
-
 	
 	//写书评
 	@RequestMapping(value="{id}/reviews",method=RequestMethod.POST)
@@ -283,8 +282,8 @@ public class UserController {
 
     //用户收藏书单的二级目录
     @RequestMapping(value = "{id}/booklist/book", method = RequestMethod.GET)
-    public JsonResult bookUnderBooklist(@PathVariable String id, @RequestParam String booklistname) {
+    public JsonResult bookUnderBooklist(@PathVariable String id, @RequestParam int booklistId) {
         UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(bookListService.searchBookByBooklistName(id, booklistname), ResultCode.NOT_FOUND);
+        return unifiedResult.unifiedResult(bookListService.searchBookByBooklistId(id, booklistId), ResultCode.NOT_FOUND);
     }
 }

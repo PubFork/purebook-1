@@ -14,6 +14,6 @@ public interface BooklistBookRepository extends JpaRepository<BooklistBook, Inte
     List<BooklistBook> findByBookId(int bookId);
     //List<BooklistBook> findByUserId(int userId);
 
-    @Query("select b from Book b, BooklistBook lb, ListUser u, BookList l where b.id = lb.bookId and u.listId = lb.bookListId and l.id = u.listId and u.userId = ?1 and l.name = ?2")
-    List<Book> searchByBooklistName(String userId, String name);
+    @Query("select b from Book b, BooklistBook lb, ListUser u, BookList l where b.id = lb.bookId and u.listId = lb.bookListId and l.id = u.listId and u.userId = ?1 and l.id = ?2")
+    List<Book> searchByBooklistId(String userId, int booklistId);
 }

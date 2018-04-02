@@ -17,6 +17,8 @@ public class BookReview {
     private int bookId;
     @Column(name = "user_id", nullable = false)
     private String userId;
+    private String userName;
+    private String userAvatar;
     @Column(nullable = false)
     private String review;
     @Column(nullable = false)
@@ -26,9 +28,11 @@ public class BookReview {
 
     public BookReview() {}
 
-    public BookReview(int bookId, String userId, String review, Timestamp time, String title) {
+    public BookReview(int bookId, String userId, String userName, String userAvatar, String review, Timestamp time, String title) {
         this.bookId = bookId;
         this.userId = userId;
+        this.userName = userName;
+        this.userAvatar = userAvatar;
         this.review = review;
         this.time = time;
         this.title = title;
@@ -64,6 +68,22 @@ public class BookReview {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
     }
 
     public String getReview() {

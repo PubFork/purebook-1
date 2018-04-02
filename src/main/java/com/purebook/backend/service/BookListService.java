@@ -43,7 +43,7 @@ public class BookListService {
         return bookListRepository.findByNameContaining(nameLike);
     }
 
-    public List<Book> searchBookByBooklistName(String userId, String name) {
-        return booklistBookRepository.searchByBooklistName(userId, name);
+    public List<Book> searchBookByBooklistId(String userId, int booklistId) {
+        return booklistBookRepository.searchByBooklistId(userId, booklistId);
     }
 }

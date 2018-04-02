@@ -112,10 +112,10 @@ public class BookController {
         return unifiedResult.unifiedResult(bookReview, ResultCode.NOT_FOUND);
     }
 
-	//查看用户的所有书评
+	//查看某本书的所有书评
 	@RequestMapping(value="{id}/reviews",method=RequestMethod.GET)
-	public JsonResult getReview(@PathVariable String id){
-		List<BookReview> bookReviews=bookReviewService.findByUserID(id);
+	public JsonResult getReview(@PathVariable int id){
+		List<BookReview> bookReviews=bookReviewService.findByBookID(id);
 //		if(bookReviews!=null){
 //			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 //			jsonResultwithData.setData(bookReviews);
