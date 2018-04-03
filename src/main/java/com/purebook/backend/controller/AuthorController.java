@@ -31,7 +31,11 @@ public class AuthorController {
 //        }
 //        JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //        return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(authorInfo, ResultCode.NOT_FOUND);
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(authorInfo, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(authorInfo, ResultCode.NOT_FOUND);
+
     }
 }

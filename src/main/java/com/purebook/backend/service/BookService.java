@@ -30,8 +30,8 @@ public class BookService {
 		return randomList.getRandomList(tagRepository.findBook(tag), 10);
 	}
 
-	public List<Book> findBookByName(String name){
-		return bookRepository.findByName(name);
+	public List<Book> findByNameLike(String nameLike){
+		return bookRepository.findByNameLike("%" + nameLike + "%");
 	}
 
 	public List<Book> findTop250(){

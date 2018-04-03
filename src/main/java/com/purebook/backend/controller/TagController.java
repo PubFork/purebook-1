@@ -34,7 +34,10 @@ public class TagController {
 //		}
 //		JsonResult jsonResult = new JsonResult(ResultCode.EXCEPTION);
 //		return jsonResult;
-		UnifiedResult unifiedResult = new UnifiedResult();
-		return unifiedResult.unifiedResult(tags, ResultCode.EXCEPTION);
+
+//		UnifiedResult unifiedResult = new UnifiedResult();
+//		return unifiedResult.unifiedResult(tags, ResultCode.EXCEPTION);
+
+        return UnifiedResult.unifiedResult(tags, ResultCode.EXCEPTION);
 	}
 }

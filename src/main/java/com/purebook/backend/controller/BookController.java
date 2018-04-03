@@ -40,9 +40,13 @@ public class BookController {
 //		}
 //		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
-	}
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
+
+    }
 
 	//查询书
 	@RequestMapping(value="{id}",method=RequestMethod.GET)
@@ -55,9 +59,13 @@ public class BookController {
 //		}
 //		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(book, ResultCode.NOT_FOUND);
-	}
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(book, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(book, ResultCode.NOT_FOUND);
+
+    }
 	
 	//搜索书籍
 	@RequestMapping(method=RequestMethod.GET)
@@ -77,7 +85,7 @@ public class BookController {
 	}
 	
 	private JsonResult fuzzySearch(String nameLike){
-		List<Book> list=bookService.findBookByName(nameLike);
+		List<Book> list=bookService.findByNameLike(nameLike);
 //		if(list!=null){
 //			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 //			jsonResultwithData.setData(list);
@@ -85,9 +93,20 @@ public class BookController {
 //		}
 //		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
-	}
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
+
+    }
+
+    //搜索书籍
+    @RequestMapping(value = "tag", method=RequestMethod.GET)
+    public JsonResult search(@RequestParam String tag){
+	    List<Book> books = bookService.findBookByTag(tag);
+        return UnifiedResult.unifiedResult(books, ResultCode.NOT_FOUND);
+    }
 	
 	//某本书的标签
 	@RequestMapping(value="{id}/tags",method=RequestMethod.GET)
@@ -100,16 +119,23 @@ public class BookController {
 //		}
 //		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(tags, ResultCode.NOT_FOUND);
-	}
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(tags, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(tags, ResultCode.NOT_FOUND);
+
+    }
 
 	//获取单个书评
 	@RequestMapping(value = "{id}/review", method = RequestMethod.GET)
     public JsonResult getSingleReview(@PathVariable int id) {
 	    BookReview bookReview = bookReviewService.findById(id);
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(bookReview, ResultCode.NOT_FOUND);
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(bookReview, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(bookReview, ResultCode.NOT_FOUND);
     }
 
 	//查看某本书的所有书评
@@ -123,9 +149,13 @@ public class BookController {
 //		}
 //		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(bookReviews, ResultCode.NOT_FOUND);
-	}
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(bookReviews, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(bookReviews, ResultCode.NOT_FOUND);
+
+    }
 	
 	
 	//新书推荐
@@ -139,9 +169,13 @@ public class BookController {
 //		}
 //		JsonResult jsonResult = new JsonResult(ResultCode.EXCEPTION);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(books, ResultCode.EXCEPTION);
-	}
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(books, ResultCode.EXCEPTION);
+
+        return UnifiedResult.unifiedResult(books, ResultCode.EXCEPTION);
+
+    }
 	
 	//top250
 	@RequestMapping(value="top250")
@@ -154,8 +188,11 @@ public class BookController {
 //		}
 //		JsonResult jsonResult = new JsonResult(ResultCode.EXCEPTION);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(books, ResultCode.EXCEPTION);
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(books, ResultCode.EXCEPTION);
+
+        return UnifiedResult.unifiedResult(books, ResultCode.EXCEPTION);
 	}
 	
 	//热门
@@ -169,8 +206,11 @@ public class BookController {
 //		}
 //		JsonResult jsonResult = new JsonResult(ResultCode.EXCEPTION);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(books, ResultCode.EXCEPTION);
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(books, ResultCode.EXCEPTION);
+
+        return UnifiedResult.unifiedResult(books, ResultCode.EXCEPTION);
 	}
 
 	//获取书籍摘录
@@ -183,8 +223,11 @@ public class BookController {
 //        JsonResultwithData jsonResultwithData = new JsonResultwithData(ResultCode.SUCCESS);
 //	    jsonResultwithData.setData(excerpts);
 //	    return jsonResultwithData;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(excerpts, ResultCode.NOT_FOUND);
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(excerpts, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(excerpts, ResultCode.NOT_FOUND);
     }
 
     //模糊搜索书单
@@ -197,7 +240,11 @@ public class BookController {
 //            return jsonResultwithData;
 //        }
 //        return new JsonResult(ResultCode.NOT_FOUND);
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(bookLists, ResultCode.NOT_FOUND);
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(bookLists, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(bookLists, ResultCode.NOT_FOUND);
+
     }
 }

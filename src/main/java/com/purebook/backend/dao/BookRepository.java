@@ -13,7 +13,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     Book findById(int id);
 
-    List<Book> findByName(String name);
+    List<Book> findByNameLike(String name);
 
 //    @Query(value = "select * from Book where BookId in " +
 //            "(select Book_ID from Favourtie group by BookID having Count(UserID) >7) " +

@@ -5,6 +5,7 @@ import com.purebook.backend.entity.Favourite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class FavouriteService {
 		return favouriteRepository.save(new Favourite(userId, bookId, new Timestamp(System.currentTimeMillis()))) != null;
 	}
 
+	@Transactional
 	public boolean removeFavourite(String userId, int bookId) {
 		return favouriteRepository.deleteByUserIdAndBookId(userId, bookId) == 1;
 	}

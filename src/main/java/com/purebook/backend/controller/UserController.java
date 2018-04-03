@@ -61,8 +61,11 @@ public class UserController {
 //		}
 //		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(user, ResultCode.NOT_FOUND);
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(user, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(user, ResultCode.NOT_FOUND);
 	}
 	
 	//用户的所有书评
@@ -76,9 +79,13 @@ public class UserController {
 //		}
 //		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(bookReviews, ResultCode.NOT_FOUND);
-	}
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(bookReviews, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(bookReviews, ResultCode.NOT_FOUND);
+
+    }
 
 	
 	//写书评
@@ -93,9 +100,13 @@ public class UserController {
 //			JsonResult jsonResult=new JsonResult(ResultCode.EXCEPTION);
 //			return jsonResult;
 //		}
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(ResultCode.EXCEPTION, bookReviewService.writeReview((int)request.get("bookId"), id, (String)request.get("review"), (String)request.get("title")));
-	}
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(ResultCode.EXCEPTION, bookReviewService.writeReview((int)request.get("bookId"), id, (String)request.get("review"), (String)request.get("title")));
+
+        return UnifiedResult.unifiedResult(ResultCode.EXCEPTION, bookReviewService.writeReview((int)request.get("bookId"), id, (String)request.get("review"), (String)request.get("title")));
+
+    }
 	
 	//推荐书目
 //	@RequestMapping(value="{id}/recommendation",method=RequestMethod.GET)
@@ -145,34 +156,43 @@ public class UserController {
 //			JsonResult jsonResult=new JsonResult(ResultCode.EXCEPTION);
 //			return jsonResult;
 //		}
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(ResultCode.EXCEPTION, favouriteService.addFavourite(id, favourite.getBookId()));
-	}
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(ResultCode.EXCEPTION, favouriteService.addFavourite(id, favourite.getBookId()));
+
+        return UnifiedResult.unifiedResult(ResultCode.EXCEPTION, favouriteService.addFavourite(id, favourite.getBookId()));
+    }
 	
 	//取消收藏
 	@RequestMapping(value="{id}/collection",method=RequestMethod.DELETE)
-	public JsonResult removeCollection(@PathVariable String id, @RequestParam Integer BookID){
+	public JsonResult removeCollection(@PathVariable String id, @RequestParam Integer bookId){
 //		if(favouriteService.removeFavourite(id, BookID)){
 //			JsonResult jsonResult=new JsonResult(ResultCode.SUCCESS);
 //			return jsonResult;
 //		}
 //		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, favouriteService.removeFavourite(id, BookID));
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, favouriteService.removeFavourite(id, BookID));
+
+        return UnifiedResult.unifiedResult(ResultCode.NOT_FOUND, favouriteService.removeFavourite(id, bookId));
 	}
 	
 	//是否收藏
 	@RequestMapping(value="{id}/relation",method=RequestMethod.GET)
-	public JsonResult isCollected(@PathVariable String id, @RequestParam Integer BookID){
+	public JsonResult isCollected(@PathVariable String id, @RequestParam Integer bookId){
 //		if(favouriteService.isFavourite(id, BookID)){
 //			JsonResult jsonResult=new JsonResult(ResultCode.SUCCESS);
 //			return jsonResult;
 //		}
 //		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, favouriteService.isFavourite(id, BookID));
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, favouriteService.isFavourite(id, BookID));
+
+        return UnifiedResult.unifiedResult(ResultCode.NOT_FOUND, favouriteService.isFavourite(id, bookId));
 	}
 	
 	//用户评论过的书
@@ -186,9 +206,12 @@ public class UserController {
 //		}
 //		JsonResult jsonResult = new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(books, ResultCode.NOT_FOUND);
-	}
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(books, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(books, ResultCode.NOT_FOUND);
+    }
 
 	//获取用户摘录
     @RequestMapping(value = "{id}/excerpt", method = RequestMethod.GET)
@@ -201,8 +224,12 @@ public class UserController {
 //        }
 //        JsonResult jsonResult = new JsonResult(ResultCode.NOT_FOUND);
 //        return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(excerpts, ResultCode.NOT_FOUND);
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(excerpts, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(excerpts, ResultCode.NOT_FOUND);
+
     }
 
     //用户添加摘录
@@ -217,8 +244,12 @@ public class UserController {
 //        }
 //        excerptService.wirteExcerpt(bookId, id, content);
 //        return new JsonResult(ResultCode.SUCCESS);
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, excerptService.wirteExcerpt((int)request.get("bookId"), id, (String)request.get("content")));
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, excerptService.wirteExcerpt((int)request.get("bookId"), id, (String)request.get("content")));
+
+        return UnifiedResult.unifiedResult(ResultCode.NOT_FOUND, excerptService.wirteExcerpt((int)request.get("bookId"), id, (String)request.get("content")));
+
     }
 
     //查看某个用户收藏的书单
@@ -231,8 +262,12 @@ public class UserController {
 //        JsonResultwithData jsonResultwithData = new JsonResultwithData(ResultCode.SUCCESS);
 //        jsonResultwithData.setData(bookList);
 //        return jsonResultwithData;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(bookList, ResultCode.NOT_FOUND);
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(bookList, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(bookList, ResultCode.NOT_FOUND);
+
     }
 
     //收藏书单
@@ -246,8 +281,12 @@ public class UserController {
 //        }
 //        JsonResult jsonResult = new JsonResult(ResultCode.NOT_FOUND);
 //        return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, bookListService.addListUser(map.get("id"), map.get("name")));
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, bookListService.addListUser(map.get("id"), map.get("name")));
+
+        return UnifiedResult.unifiedResult(ResultCode.NOT_FOUND, bookListService.addListUser(map.get("id"), map.get("name")));
+
     }
 
     //取消收藏书单
@@ -260,8 +299,12 @@ public class UserController {
 //        }
 //        JsonResult jsonResult = new JsonResult(ResultCode.NOT_FOUND);
 //        return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, bookListService.deleteByUserIdAndName(id, name));
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, bookListService.deleteByUserIdAndName(id, name));
+
+        return UnifiedResult.unifiedResult(ResultCode.NOT_FOUND, bookListService.deleteByUserIdAndName(id, name));
+
     }
 
     //判断是否收藏某书单
@@ -274,8 +317,12 @@ public class UserController {
 //        }
 //        JsonResult jsonResult = new JsonResult(ResultCode.NOT_FOUND);
 //        return jsonResult;
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, bookListService.isCollectedList(id, name));
+
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(ResultCode.NOT_FOUND, bookListService.isCollectedList(id, name));
+
+        return UnifiedResult.unifiedResult(ResultCode.NOT_FOUND, bookListService.isCollectedList(id, name));
+
     }
 
     //推荐书单
@@ -283,7 +330,10 @@ public class UserController {
     //用户收藏书单的二级目录
     @RequestMapping(value = "{id}/booklist/book", method = RequestMethod.GET)
     public JsonResult bookUnderBooklist(@PathVariable String id, @RequestParam int booklistId) {
-        UnifiedResult unifiedResult = new UnifiedResult();
-        return unifiedResult.unifiedResult(bookListService.searchBookByBooklistId(id, booklistId), ResultCode.NOT_FOUND);
+//        UnifiedResult unifiedResult = new UnifiedResult();
+//        return unifiedResult.unifiedResult(bookListService.searchBookByBooklistId(id, booklistId), ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(bookListService.searchBookByBooklistId(id, booklistId), ResultCode.NOT_FOUND);
+
     }
 }

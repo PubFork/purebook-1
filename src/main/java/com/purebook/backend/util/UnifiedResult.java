@@ -7,7 +7,7 @@ import com.example.result.ResultCode;
 import java.util.List;
 
 public class UnifiedResult {
-    public <E> JsonResult unifiedResult(List<E> list, ResultCode code) {
+    public static <E> JsonResult unifiedResult(List<E> list, ResultCode code) {
         if (list.size() != 0) {
             JsonResultwithData jsonResultwithData = new JsonResultwithData();
             jsonResultwithData.setData(list);
@@ -16,7 +16,7 @@ public class UnifiedResult {
         return new JsonResult(code);
     }
 
-    public <E> JsonResult unifiedResult(E element, ResultCode code) {
+    public static <E> JsonResult unifiedResult(E element, ResultCode code) {
         if (element != null) {
             JsonResultwithData jsonResultwithData = new JsonResultwithData();
             jsonResultwithData.setData(element);
@@ -25,7 +25,7 @@ public class UnifiedResult {
         return new JsonResult(code);
     }
 
-    public JsonResult unifiedResult(ResultCode code, boolean element) {
+    public static JsonResult unifiedResult(ResultCode code, boolean element) {
         if (element) {
             return new JsonResult(ResultCode.SUCCESS);
         }
