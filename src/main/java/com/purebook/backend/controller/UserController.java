@@ -124,24 +124,27 @@ public class UserController {
 	//用户喜欢的书
 	@RequestMapping(value="{id}/collection",method=RequestMethod.GET)
 	public JsonResult getCollection(@PathVariable String id){
-	    System.out.print("hhhhhhhhhhhhhhhhhhhhh");
+//	    System.out.print("hhhhhhhhhhhhhhhhhhhhh");
 		List<Book> books=bookService.findFavourite(id);
 
-		for (Book i : books) {
-            System.out.print("z");
-		    System.out.print(i.getName());
-        }
+//		for (Book i : books) {
+//            System.out.print("z");
+//		    System.out.print(i.getName());
+//        }
 
-		if(books!=null){
-			JsonResultwithData jsonResultwithData=new JsonResultwithData();
-			jsonResultwithData.setData(books);
-			return jsonResultwithData;
-		}
-		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
+//		if(books!=null){
+//			JsonResultwithData jsonResultwithData=new JsonResultwithData();
+//			jsonResultwithData.setData(books);
+//			return jsonResultwithData;
+//		}
+//		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
+//
+//		return jsonResult;
 
-		return jsonResult;
 //        UnifiedResult unifiedResult = new UnifiedResult();
 //        return unifiedResult.unifiedResult(books, ResultCode.NOT_FOUND);
+
+        return UnifiedResult.unifiedResult(books, ResultCode.NOT_FOUND);
 	}
 	
 	//收藏书

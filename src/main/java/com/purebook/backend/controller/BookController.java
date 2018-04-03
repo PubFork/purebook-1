@@ -166,7 +166,7 @@ public class BookController {
 	
 	
 	//新书推荐
-	@RequestMapping(value="newones")
+	@RequestMapping(value="newones", method = RequestMethod.GET)
 	public JsonResult getLatest(){
 		List<Book> books=bookService.findLatest();
 //		if(books!=null){
@@ -185,7 +185,7 @@ public class BookController {
     }
 	
 	//top250
-	@RequestMapping(value="top250")
+	@RequestMapping(value="top250" ,method = RequestMethod.GET)
 	public JsonResult getTop250(){
 		List<Book> books=bookService.findTop250();
 //		if(books!=null){
@@ -203,7 +203,7 @@ public class BookController {
 	}
 	
 	//热门
-	@RequestMapping(value="hot")
+	@RequestMapping(value="hot", method = RequestMethod.GET)
 	public JsonResult getHot(){
 		List<Book> books=bookService.findHot();
 //		if(books!=null){
@@ -221,7 +221,7 @@ public class BookController {
 	}
 
 	//获取书籍摘录
-    @RequestMapping(value = "{id}/excerpt")
+    @RequestMapping(value = "{id}/excerpt", method = RequestMethod.GET)
     public JsonResult getBookExcerpt(@PathVariable Integer id) {
 	    List<Excerpt> excerpts =  excerptService.findByBookId(id);
 //	    if (excerpts == null) {
