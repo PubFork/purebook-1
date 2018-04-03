@@ -31,9 +31,9 @@ public class BookController {
 	@Autowired
     BookListService bookListService;
 	
-	private JsonResult findBookbyTag(String tag){
-		List<Book> list=bookService.findBookByTag(tag);
-//		if(list!=null){
+//	private JsonResult findBookbyTag(String tag){
+//		List<Book> list=bookService.findBookByTag(tag);
+////		if(list!=null){
 //			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 //			jsonResultwithData.setData(list);
 //			return jsonResultwithData;
@@ -43,12 +43,12 @@ public class BookController {
 
 //        UnifiedResult unifiedResult = new UnifiedResult();
 //        return unifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
+//
+//        return UnifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
+//
+//    }
 
-        return UnifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
-
-    }
-
-	//查询书
+	//根据id查询书
 	@RequestMapping(value="{id}",method=RequestMethod.GET)
 	public JsonResult findBookbyID(@PathVariable int id){
 		Book book = bookService.findBookByID(id);
@@ -68,24 +68,24 @@ public class BookController {
     }
 	
 	//搜索书籍
-	@RequestMapping(method=RequestMethod.GET)
-	public JsonResult search(@RequestParam(value="nameLike",required=false) String nameLike,
-			@RequestParam(value="tag",required=false) String tag){
-		
-		if(nameLike!=null){
-			return fuzzySearch(nameLike);
-		}
-		else if(tag!=null){
-			return findBookbyTag(tag);
-		}
-		else{
-			JsonResult jsonResult = new JsonResult(ResultCode.PARAMS_ERROR);
-			return jsonResult;
-		}
-	}
+//	@RequestMapping(method=RequestMethod.GET)
+//	public JsonResult search(@RequestParam(value="nameLike",required=false) String nameLike,
+//			@RequestParam(value="tag",required=false) String tag){
+//
+//		if(nameLike!=null){
+//			return fuzzySearch(nameLike);
+//		}
+//		else if(tag!=null){
+//			return findBookbyTag(tag);
+//		}
+//		else{
+//			JsonResult jsonResult = new JsonResult(ResultCode.PARAMS_ERROR);
+//			return jsonResult;
+//		}
+//	}
 	
-	private JsonResult fuzzySearch(String nameLike){
-		List<Book> list=bookService.findByNameLike(nameLike);
+//	private JsonResult fuzzySearch(String nameLike){
+//		List<Book> list=bookService.findByNameLike(nameLike);
 //		if(list!=null){
 //			JsonResultwithData jsonResultwithData=new JsonResultwithData();
 //			jsonResultwithData.setData(list);
@@ -93,17 +93,24 @@ public class BookController {
 //		}
 //		JsonResult jsonResult=new JsonResult(ResultCode.NOT_FOUND);
 //		return jsonResult;
-
+//
 //        UnifiedResult unifiedResult = new UnifiedResult();
 //        return unifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
+//
+//        return UnifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
+//
+//    }
 
+    //模糊书名搜索书籍
+    @RequestMapping(method=RequestMethod.GET)
+    public JsonResult fuzzySearch(@RequestParam String nameLike){
+        List<Book> list=bookService.findByNameLike(nameLike);
         return UnifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
-
     }
 
-    //搜索书籍
+    //根据标签搜索书籍
     @RequestMapping(value = "tag", method=RequestMethod.GET)
-    public JsonResult search(@RequestParam String tag){
+    public JsonResult searchByTag(@RequestParam String tag){
 	    List<Book> books = bookService.findBookByTag(tag);
         return UnifiedResult.unifiedResult(books, ResultCode.NOT_FOUND);
     }

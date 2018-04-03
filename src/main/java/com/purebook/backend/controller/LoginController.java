@@ -63,7 +63,7 @@ public class LoginController {
 			map.put("msg", "code 不能为空");
 			return map;
 		}
-
+		
 
 
 		//////////////// 1、向微信服务器 使用登录凭证 code 获取 session_key 和 openid ////////////////
