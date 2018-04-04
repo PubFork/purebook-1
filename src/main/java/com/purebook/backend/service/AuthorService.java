@@ -13,7 +13,7 @@ public class AuthorService {
     @Autowired
     AuthorRepository authorRepository;
 
-    public List<Author> findByName(String name) {
-        return authorRepository.findByName(name);
+    public List<Author> findByNameLike(String name) {
+        return authorRepository.findByNameLike("%" + name + "%");
     }
 }

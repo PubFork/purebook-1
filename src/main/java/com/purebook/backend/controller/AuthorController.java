@@ -7,10 +7,7 @@ import com.purebook.backend.entity.Author;
 import com.purebook.backend.service.AuthorService;
 import com.purebook.backend.util.UnifiedResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,9 +18,9 @@ public class AuthorController {
     @Autowired
     AuthorService authorService;
 
-    @RequestMapping(value="{name}", method= RequestMethod.GET)
-    public JsonResult getAuthorInfo(@PathVariable String name){
-        List<Author> authorInfo = authorService.findByName(name);
+    @RequestMapping(method= RequestMethod.GET)
+    public JsonResult getAuthorInfo(@RequestParam String name){
+        List<Author> authorInfo = authorService.findByNameLike(name);
 //        if(authorInfo!=null){
 //            JsonResultwithData jsonResultwithData=new JsonResultwithData();
 //            jsonResultwithData.setData(authorInfo);

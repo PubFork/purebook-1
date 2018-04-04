@@ -102,14 +102,14 @@ public class BookController {
 //    }
 
     //模糊书名搜索书籍
-    @RequestMapping(method=RequestMethod.GET)
+    @RequestMapping(value = "bookname", method=RequestMethod.GET)
     public JsonResult fuzzySearch(@RequestParam String nameLike){
-        List<Book> list=bookService.findByNameLike(nameLike);
+        List<Book> list = bookService.findByNameLike(nameLike);
         return UnifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
     }
 
     //根据标签搜索书籍
-    @RequestMapping(value = "tag", method=RequestMethod.GET)
+    @RequestMapping(value = "booktag", method=RequestMethod.GET)
     public JsonResult searchByTag(@RequestParam String tag){
 	    List<Book> books = bookService.findBookByTag(tag);
         return UnifiedResult.unifiedResult(books, ResultCode.NOT_FOUND);
