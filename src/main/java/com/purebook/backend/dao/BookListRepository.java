@@ -19,4 +19,5 @@ public interface BookListRepository extends JpaRepository<BookList, Integer> {
 
     //for test
     List<BookList> findByUserId(String userId);
+
 }

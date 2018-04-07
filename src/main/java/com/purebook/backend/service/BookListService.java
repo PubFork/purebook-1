@@ -6,6 +6,7 @@ import com.purebook.backend.dao.ListUserRepository;
 import com.purebook.backend.entity.Book;
 import com.purebook.backend.entity.BookList;
 import com.purebook.backend.entity.ListUser;
+import com.purebook.backend.util.RandomList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +49,10 @@ public class BookListService {
 
     public List<Book> searchBookByBooklistId(String userId, int booklistId) {
         return booklistBookRepository.searchByBooklistId(userId, booklistId);
+    }
+
+    public List<BookList> recommandBooklist(String userId) {
+        RandomList randomList = new RandomList();
+        return randomList.getRandomList(bookListRepository.findByUserId(userId), 10);
     }
 }

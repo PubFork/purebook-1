@@ -328,7 +328,20 @@ public class UserController {
 
     }
 
+    //推荐书
+    @RequestMapping(value = "{id}/recommand", method = RequestMethod.GET)
+    public JsonResult recommandBook(@PathVariable String id) {
+        List<Book> books = bookService.findFavourite(id);
+        return UnifiedResult.unifiedResult(books, ResultCode.NOT_FOUND);
+    }
+
     //推荐书单
+    @RequestMapping(value = "{id}/recommandbooklist", method = RequestMethod.GET)
+    public JsonResult recommmandBooklist(@PathVariable String id) {
+	    List<BookList> bookLists = bookListService.recommandBooklist(id);
+	    return UnifiedResult.unifiedResult(bookLists, ResultCode.NOT_FOUND);
+    }
+
 
     //用户收藏书单的二级目录
     @RequestMapping(value = "{id}/booklist/book", method = RequestMethod.GET)
