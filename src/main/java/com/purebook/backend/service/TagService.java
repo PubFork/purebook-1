@@ -1,15 +1,12 @@
 package com.purebook.backend.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.purebook.backend.dao.TagRepository;
-import com.purebook.backend.entity.BookList;
 import com.purebook.backend.util.RandomList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.purebook.backend.dao.BookTagDao;
 import com.purebook.backend.entity.Tag;
 
 @Service

@@ -1,5 +1,7 @@
 package com.purebook.backend.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import com.purebook.backend.entity.*;
@@ -103,16 +105,14 @@ public class BookController {
 
     //模糊书名搜索书籍
     @RequestMapping(value = "bookname", method=RequestMethod.GET)
-    public JsonResult fuzzySearch(@RequestParam String nameLike){
-        List<Book> list = bookService.findByNameLike(nameLike);
-        return UnifiedResult.unifiedResult(list, ResultCode.NOT_FOUND);
+    public JsonResult fuzzySearch(@RequestParam String nameLike) throws UnsupportedEncodingException {
+        return UnifiedResult.unifiedResult(bookService.findByNameLike(URLDecoder.decode(nameLike, "UTF-8")), ResultCode.NOT_FOUND);
     }
 
     //根据标签搜索书籍
     @RequestMapping(value = "booktag", method=RequestMethod.GET)
-    public JsonResult searchByTag(@RequestParam String tag){
-	    List<Book> books = bookService.findBookByTag(tag);
-        return UnifiedResult.unifiedResult(books, ResultCode.NOT_FOUND);
+    public JsonResult searchByTag(@RequestParam String tag) throws UnsupportedEncodingException {
+        return UnifiedResult.unifiedResult(bookService.findBookByTag(URLDecoder.decode(tag, "UTF-8")), ResultCode.NOT_FOUND);
     }
 	
 	//某本书的标签
@@ -239,8 +239,7 @@ public class BookController {
 
     //模糊搜索书单
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public JsonResult findByNameLike(@RequestParam String nameLike) {
-        List<BookList> bookLists = bookListService.findByNameLike(nameLike);
+    public JsonResult findByNameLike(@RequestParam String nameLike) throws UnsupportedEncodingException {
 //        if (bookLists != null) {
 //            JsonResultwithData jsonResultwithData = new JsonResultwithData(ResultCode.SUCCESS);
 //            jsonResultwithData.setData(bookLists);
@@ -251,7 +250,7 @@ public class BookController {
 //        UnifiedResult unifiedResult = new UnifiedResult();
 //        return unifiedResult.unifiedResult(bookLists, ResultCode.NOT_FOUND);
 
-        return UnifiedResult.unifiedResult(bookLists, ResultCode.NOT_FOUND);
+        return UnifiedResult.unifiedResult(bookListService.findByNameLike(URLDecoder.decode(nameLike, "UTF-8")), ResultCode.NOT_FOUND);
 
     }
 }

@@ -5,16 +5,9 @@ import java.util.List;
 
 import com.purebook.backend.dao.BookReviewRepository;
 import com.purebook.backend.dao.UserRepository;
-import com.purebook.backend.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.mysql.fabric.xmlrpc.base.Data;
-import com.purebook.backend.dao.BookReviewDao;
 import com.purebook.backend.entity.BookReview;
 
 @Service

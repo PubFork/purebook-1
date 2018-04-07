@@ -3,9 +3,6 @@ package com.purebook.backend.entity;
 
 import java.sql.Timestamp;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.tools.corba.se.idl.constExpr.Times;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

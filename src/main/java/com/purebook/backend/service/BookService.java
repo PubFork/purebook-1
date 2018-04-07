@@ -8,10 +8,7 @@ import com.purebook.backend.util.RandomList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.purebook.backend.dao.BookDao;
-import com.purebook.backend.dao.BookTagDao;
 import com.purebook.backend.entity.Book;
-import com.purebook.backend.entity.Tag;
 
 @Service
 public class BookService {
