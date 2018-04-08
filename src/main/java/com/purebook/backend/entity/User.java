@@ -1,6 +1,5 @@
 package com.purebook.backend.entity;
 
-
 import java.sql.Timestamp;
 
 import javax.persistence.Column;

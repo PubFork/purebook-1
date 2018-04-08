@@ -32,15 +32,13 @@ public class UserController {
 	//查询用户
 	@RequestMapping(value="{id}",method=RequestMethod.GET)
 	public JsonResult findbyID(@PathVariable String id){
-		User user=userService.findUserById(id);
-        return UnifiedResult.unifiedResult(user, ResultCode.NOT_FOUND);
+        return UnifiedResult.unifiedResult(userService.findUserById(id), ResultCode.NOT_FOUND);
 	}
 	
 	//用户的所有书评
 	@RequestMapping(value="{id}/reviews",method=RequestMethod.GET)
 	public JsonResult findBookReview(@PathVariable String id){
-		List<BookReview> bookReviews=bookReviewService.findByUserID(id);
-        return UnifiedResult.unifiedResult(bookReviews, ResultCode.NOT_FOUND);
+        return UnifiedResult.unifiedResult(bookReviewService.findByUserID(id), ResultCode.NOT_FOUND);
     }
 
 	
@@ -129,7 +127,6 @@ public class UserController {
 	    List<BookList> bookLists = bookListService.recommandBooklist(id);
 	    return UnifiedResult.unifiedResult(bookLists, ResultCode.NOT_FOUND);
     }
-
 
     //用户收藏书单的二级目录
     @RequestMapping(value = "{id}/booklist/book", method = RequestMethod.GET)

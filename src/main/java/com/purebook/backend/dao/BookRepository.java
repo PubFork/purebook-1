@@ -29,4 +29,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("select b from Book b, BookReview r where b.id = r.bookId and r.userId = ?1")
     List<Book> getReviewedBooks(String userId);
 
+    @Query("select b from Book b, Author a where a.bookId = b.id and a.name like ?1")
+    List<Book> findWorkByNameLike(String name);
 }

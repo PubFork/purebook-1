@@ -51,6 +51,10 @@ public class BookService {
 	}
 
 	public List<Book> getReviewedBooks(String uid){
-		return bookRepository.getReviewedBooks(uid);
+	    return bookRepository.getReviewedBooks(uid);
 	}
+
+    public List<Book> findWorkByNameLike(String name) {
+        return bookRepository.findWorkByNameLike("%" + name + "%");
+    }
 }
