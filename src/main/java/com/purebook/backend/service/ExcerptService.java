@@ -1,7 +1,5 @@
 package com.purebook.backend.service;
 
-import com.example.result.JsonResult;
-import com.example.result.ResultCode;
 import com.purebook.backend.dao.ExcerptRepository;
 import com.purebook.backend.entity.Excerpt;
 import org.springframework.beans.factory.annotation.Autowired;

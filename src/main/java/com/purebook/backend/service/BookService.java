@@ -46,12 +46,7 @@ public class BookService {
         return randomList.getRandomList(bookRepository.findHot(), 40);
 	}
 
-//	public List<Book> recommend(Integer id){
-//		return bookRepository.recommend(id);
-//	}
-//
 	public List<Book> findFavourite(String id){
-		System.out.print("wwwwwwwwwwwww");
 		return bookRepository.findFavourite(id);
 	}
 

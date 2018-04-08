@@ -21,10 +21,6 @@ public class BookList {
 
     public BookList() {}
 
-    //retore after test finished
-    //public BookList(String name) { this.name = name; }
-
-    //for test
     public BookList(String name, String userId) { this.name = name; this.userId = userId; }
 
     public int getId() {

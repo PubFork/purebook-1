@@ -1,10 +1,6 @@
 package com.purebook.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.security.PublicKey;
 
 @Entity
 public class Tag {

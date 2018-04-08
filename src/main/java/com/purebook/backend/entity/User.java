@@ -5,16 +5,13 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class User {
 
     @Id
     private String userId;
-    //@Column(nullable = false)
     private String name;
     private String password;
     private String phone;
@@ -23,8 +20,7 @@ public class User {
     private Timestamp createTime;
     private String description;
 
-    public User() {
-    }
+    public User() {}
 
     public User(String userId, String password) {
         this.userId = userId;

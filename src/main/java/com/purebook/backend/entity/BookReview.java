@@ -2,10 +2,7 @@ package com.purebook.backend.entity;
 
 import java.sql.Timestamp;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class BookReview {

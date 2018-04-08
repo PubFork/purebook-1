@@ -14,8 +14,6 @@ import java.security.*;
 import java.security.spec.InvalidParameterSpecException;
 
 /**
- * Created by yfs on 2017/2/6.
- * <p>
  * AES-128-CBC 加密方式
  * 注：
  * AES-128-CBC可以自己定义“密钥”和“偏移量“。
@@ -40,7 +38,6 @@ public class AesCbcUtil {
      * @throws Exception
      */
     public static String decrypt(String data, String key, String iv, String encodingFormat) throws Exception {
-//        initialize();
 
         //被加密的数据
         byte[] dataByte = Base64.decodeBase64(data);

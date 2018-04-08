@@ -1,13 +1,8 @@
 package com.purebook.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnCloudPlatform;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Book {
@@ -24,8 +19,7 @@ public class Book {
     @Column(name = "isbn")
     private String ISBN;
 
-    public Book() {
-    }
+    public Book() {}
 
     public Book(String name) {
         this.name = name;

@@ -15,9 +15,9 @@ public class BooklistBook {
     @Column(name = "booklist_id")
     private int bookListId;
 
-    BooklistBook() {}
+    public BooklistBook() {}
 
-    BooklistBook(int bookId, int bookListId) {
+    public BooklistBook(int bookId, int bookListId) {
         this.bookId = bookId;
         this.bookListId = bookListId;
     }

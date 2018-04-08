@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Service
 public class FavouriteService {
@@ -23,7 +22,6 @@ public class FavouriteService {
 	public boolean removeFavourite(String userId, int bookId) {
 		return favouriteRepository.deleteByUserIdAndBookId(userId, bookId) == 1;
 	}
-
 
 	public boolean isFavourite(String userId, int bookId) {
         return favouriteRepository.findByUserIdAndBookId(userId, bookId).size() != 0;

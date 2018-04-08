@@ -1,6 +1,5 @@
 package com.purebook.backend.dao;
 
-import com.purebook.backend.entity.Book;
 import com.purebook.backend.entity.BookList;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +16,5 @@ public interface BookListRepository extends JpaRepository<BookList, Integer> {
     @Query("select b from BookList b, ListUser l where b.id = l.listId and l.userId = ?1")
     List<BookList> searchByUserId(String id);
 
-    //for test
     List<BookList> findByUserId(String userId);
-
 }
