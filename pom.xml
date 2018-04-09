@@ -97,10 +97,6 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-					<!-- <compilerArguments>
-						<verbose />
-						<bootclasspath>${java.home}/jre/lib/rt.jar:${java.home}/jre/lib/jce.jar</bootclasspath>
-					</compilerArguments> -->
 					<encoding>utf-8</encoding>
 				</configuration>
 			</plugin>

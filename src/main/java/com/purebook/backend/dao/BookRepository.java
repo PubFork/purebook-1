@@ -20,7 +20,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("select b from Book b where b.id > 27000000")
     List<Book> findLatest();
 
-    @Query("select b from Book b, BookReview f where b.id = f.bookId group by f.bookId having count(f.userId) > 1")
+    @Query("select b from Book b, BookReview f where b.id = f.bookId group by f.bookId having count(f.userId) > 0")
     List<Book> findHot();
 
     @Query("select b from Book b, Favourite f where b.id = f.bookId and f.userId = ?1")

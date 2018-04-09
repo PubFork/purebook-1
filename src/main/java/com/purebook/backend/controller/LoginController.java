@@ -6,8 +6,6 @@ import com.purebook.backend.util.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.result.JsonResultwithData;
-import com.example.result.ResultCode;
 import com.purebook.backend.entity.User;
 import com.purebook.backend.service.UserService;
 
@@ -22,25 +20,6 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 
-	//登陆。
-//	@RequestMapping(method=RequestMethod.GET)
-//	public JsonResultwithData login(@RequestParam int id,@RequestParam String password){
-//		User user=userService.findUserById(id);
-//		if(user!=null){
-//			if(user.getPassword().equals(password)){
-//				JsonResultwithData jsonResultwithData=new JsonResultwithData();
-//				jsonResultwithData.setData(user);
-//				return jsonResultwithData;
-//			}
-//			JsonResultwithData jsonResultwithData=new JsonResultwithData(ResultCode.NOT_LOGIN);
-//			jsonResultwithData.setData(null);
-//			return jsonResultwithData;
-//		}
-//		JsonResultwithData jsonResultwithData=new JsonResultwithData(ResultCode.NOT_FOUND);
-//		jsonResultwithData.setData(null);
-//		return jsonResultwithData;
-//	}
-
 	/**
 	 * 解密用户敏感数据
 	 *
@@ -52,9 +31,7 @@ public class LoginController {
 
 	@ResponseBody
 	@RequestMapping(value = "/decodeUserInfo", method = RequestMethod.POST)
-//    public Map decodeUserInfo(String encryptedData, String iv, String code) {
 	public Map decodeUserInfo(@RequestBody Map<String, String> request) {
-        System.out.print(request.get("encryptedData") + ":" + request.get("iv") + ":" + request.get("code"));
 		Map map = new HashMap();
 
 		//登录凭证不能为空
@@ -63,10 +40,16 @@ public class LoginController {
 			map.put("msg", "code 不能为空");
 			return map;
 		}
-		
+
+		//小程序唯一标识   (在微信小程序管理后台获取)
+		String wxspAppid = "";
+		//小程序的 app secret (在微信小程序管理后台获取)
+		String wxspSecret = "";
+		//授权（必填）
+		String grant_type = "authorization_code";
 
 
-		//////////////// 1、向微信服务器 使用登录凭证 code 获取 session_key 和 openid ////////////////
+		//向微信服务器 使用登录凭证 code 获取 session_key 和 openid
 		//请求参数
 		String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + request.get("code") + "&grant_type=" + grant_type;
 		//发送请求
@@ -79,7 +62,6 @@ public class LoginController {
 		String openid = (String) json.get("openid");
 
 
-
         User user = new User(openid, new Timestamp(System.currentTimeMillis()));
 		user.setName(request.get("userName"));
 		user.setAvatar(request.get("userAvatar"));
@@ -87,8 +69,7 @@ public class LoginController {
         System.out.print(user.getName());
 
 
-		//////////////// 2、对encryptedData加密数据进行AES解密 ////////////////
-
+		//对encryptedData加密数据进行AES解密
 		try {
             System.out.print(request.get("encryptedData") + "\n" + request.get("iv") + "\n" + request.get("code") + "\n");
 
