@@ -20,7 +20,6 @@ public class BookReview {
     private String review;
     @Column(nullable = false)
     private Timestamp time;
-
     private String title;
 
     public BookReview() {}

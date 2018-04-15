@@ -27,16 +27,10 @@ public class AesCbcUtil {
         Security.addProvider(new BouncyCastleProvider());
     }
 
-    /**
-     * AES解密
-     *
-     * @param data           //密文，被加密的数据
-     * @param key            //秘钥
-     * @param iv             //偏移量
-     * @param encodingFormat //解密后的结果需要进行的编码
-     * @return
-     * @throws Exception
-     */
+     //data           密文，被加密的数据
+     //key            秘钥
+     //iv             偏移量
+     //encodingFormat 解密后的结果需要进行的编码
     public static String decrypt(String data, String key, String iv, String encodingFormat) throws Exception {
 
         //被加密的数据
@@ -63,21 +57,9 @@ public class AesCbcUtil {
                 return result;
             }
             return null;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidParameterSpecException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (InvalidAlgorithmParameterException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidParameterSpecException |
+                InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException |
+                BadPaddingException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 

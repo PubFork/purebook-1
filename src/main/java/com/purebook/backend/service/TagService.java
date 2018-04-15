@@ -19,7 +19,6 @@ public class TagService {
     }
 
     public List<Tag> getTag(){
-        RandomList randomList = new RandomList();
-        return randomList.getRandomList(tagRepository.getTag(), 20);
+        return RandomList.getRandomList(tagRepository.getTag(), 20);
     }
 }

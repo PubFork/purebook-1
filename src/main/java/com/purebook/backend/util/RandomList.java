@@ -7,7 +7,7 @@ import java.util.Random;
 public class RandomList {
 
     //随机取出指定个数元素
-    public <E> List<E> getRandomList(List<E> paramList, int count) {
+    public static <E> List<E> getRandomList(List<E> paramList, int count) {
         if (paramList.size() < count) {
             return paramList;
         }

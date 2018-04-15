@@ -8,10 +8,8 @@ public class BooklistBook {
     @Id
     @GeneratedValue
     private int id;
-
     @Column(name = "book_id")
     private int bookId;
-
     @Column(name = "booklist_id")
     private int bookListId;
 

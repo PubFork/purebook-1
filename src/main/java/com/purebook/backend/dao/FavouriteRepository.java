@@ -11,6 +11,7 @@ import java.util.List;
 public interface FavouriteRepository extends JpaRepository<Favourite, Integer>{
     @Transactional
     int deleteByUserIdAndBookId(String userId, int bookId);
+
     List<Favourite> findByUserIdAndBookId(String userId, int bookId);
 
 }

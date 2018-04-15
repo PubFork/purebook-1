@@ -23,8 +23,7 @@ public class BookService {
 	}
 
 	public List<Book> findBookByTag(String tag){
-        RandomList randomList = new RandomList();
-		return randomList.getRandomList(tagRepository.findBook(tag), 10);
+		return RandomList.getRandomList(tagRepository.findBook(tag), 10);
 	}
 
 	public List<Book> findByNameLike(String nameLike){
@@ -32,18 +31,15 @@ public class BookService {
 	}
 
 	public List<Book> findTop250(){
-        RandomList randomList = new RandomList();
-        return randomList.getRandomList(bookRepository.findTop250(), 40);
+        return RandomList.getRandomList(bookRepository.findTop250(), 40);
 	}
 
 	public List<Book> findLatest(){
-	    RandomList randomList = new RandomList();
-		return randomList.getRandomList(bookRepository.findLatest(), 40);
+		return RandomList.getRandomList(bookRepository.findLatest(), 40);
 	}
 
 	public List<Book> findHot(){
-        RandomList randomList = new RandomList();
-        return randomList.getRandomList(bookRepository.findHot(), 40);
+        return RandomList.getRandomList(bookRepository.findHot(), 40);
 	}
 
 	public List<Book> findFavourite(String id){

@@ -29,7 +29,8 @@ public class BookListService {
 
     public boolean addListUser(String userId, String listName) {
         if (listUserRepository.getByUserIdAndListId(userId, bookListRepository.findByName(listName).getId()) == null) {
-            return listUserRepository.save(new ListUser(userId, bookListRepository.findByName(listName).getId())) != null;
+            return listUserRepository.save(
+                    new ListUser(userId, bookListRepository.findByName(listName).getId())) != null;
         }
         return false;
     }
@@ -51,7 +52,6 @@ public class BookListService {
     }
 
     public List<BookList> recommandBooklist(String userId) {
-        RandomList randomList = new RandomList();
-        return randomList.getRandomList(bookListRepository.findByUserId(userId), 10);
+        return RandomList.getRandomList(bookListRepository.findByUserId(userId), 10);
     }
 }

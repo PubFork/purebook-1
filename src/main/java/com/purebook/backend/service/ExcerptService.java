@@ -14,7 +14,8 @@ public class ExcerptService {
     ExcerptRepository excerptRepository;
 
     public boolean wirteExcerpt(int bookId, String userId, String content) {
-        return excerptRepository.save(new Excerpt(userId, bookId, content, new Timestamp(System.currentTimeMillis()))) != null;
+        return excerptRepository.save(
+                new Excerpt(userId, bookId, content, new Timestamp(System.currentTimeMillis()))) != null;
     }
 
     public List<Excerpt> findByBookId(int bookId) {

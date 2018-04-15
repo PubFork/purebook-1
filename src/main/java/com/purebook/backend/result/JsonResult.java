@@ -1,4 +1,4 @@
-package com.example.result;
+package com.purebook.backend.result;
 
 public class JsonResult {
 

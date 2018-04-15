@@ -10,7 +10,9 @@ import java.util.List;
 @Repository
 public interface BookListRepository extends JpaRepository<BookList, Integer> {
     BookList findById(int id);
+
     BookList findByName(String name);
+
     List<BookList> findByNameContaining(String nameLike);
 
     @Query("select b from BookList b, ListUser l where b.id = l.listId and l.userId = ?1")

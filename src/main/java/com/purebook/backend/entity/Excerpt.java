@@ -12,15 +12,11 @@ public class Excerpt {
     @Id
     @GeneratedValue
     private int id;
-
     @Column(name = "user_id")
     private String userId;
-
     @Column(name = "book_id")
     private int bookId;
-
     private String content;
-
     @Column(name = "create_time")
     private Timestamp createTime;
 

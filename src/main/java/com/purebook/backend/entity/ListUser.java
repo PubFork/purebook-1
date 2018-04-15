@@ -11,10 +11,8 @@ public class ListUser {
     @Id
     @GeneratedValue
     private int id;
-
     @Column(name = "user_id")
     private String userId;
-
     @Column(name = "list_id")
     private int listId;
 

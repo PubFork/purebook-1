@@ -9,14 +9,10 @@ public class BookList {
     @Id
     @GeneratedValue
     private int id;
-
     private String name;
-
     private String intro;
-
     @Column(name = "user_id")
     private String userId;
-
     private String cover;
 
     public BookList() {}

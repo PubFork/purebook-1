@@ -15,7 +15,8 @@ public class FavouriteService {
     FavouriteRepository favouriteRepository;
 
 	public boolean addFavourite(String userId, int bookId) {
-		return favouriteRepository.save(new Favourite(userId, bookId, new Timestamp(System.currentTimeMillis()))) != null;
+		return favouriteRepository.save(
+				new Favourite(userId, bookId, new Timestamp(System.currentTimeMillis()))) != null;
 	}
 
 	@Transactional

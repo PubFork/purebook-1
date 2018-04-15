@@ -1,13 +1,13 @@
 package com.purebook.backend.util;
 
-import com.example.result.JsonResult;
-import com.example.result.JsonResultwithData;
-import com.example.result.ResultCode;
+import com.purebook.backend.result.JsonResult;
+import com.purebook.backend.result.JsonResultwithData;
+import com.purebook.backend.result.ResultCode;
 
 import java.util.List;
 
 public class UnifiedResult {
-    public static <E> JsonResult unifiedResult(List<E> list, ResultCode code) {
+    public static <E> JsonResult result(List<E> list, ResultCode code) {
         if (list.size() != 0) {
             JsonResultwithData jsonResultwithData = new JsonResultwithData();
             jsonResultwithData.setData(list);
@@ -16,7 +16,7 @@ public class UnifiedResult {
         return new JsonResult(code);
     }
 
-    public static <E> JsonResult unifiedResult(E element, ResultCode code) {
+    public static <E> JsonResult result(E element, ResultCode code) {
         if (element != null) {
             JsonResultwithData jsonResultwithData = new JsonResultwithData();
             jsonResultwithData.setData(element);
@@ -25,7 +25,7 @@ public class UnifiedResult {
         return new JsonResult(code);
     }
 
-    public static JsonResult unifiedResult(ResultCode code, boolean element) {
+    public static JsonResult result(ResultCode code, boolean element) {
         if (element) {
             return new JsonResult(ResultCode.SUCCESS);
         }
